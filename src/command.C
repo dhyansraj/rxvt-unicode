@@ -241,11 +241,11 @@ rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y, int y2)
         scr_overlay_set (12, y + 1, NOCHAR, r);
     }
 
-//  {
-//    char buf[4+4+3+1];
-//    snprintf (buf, sizeof (buf), "(%.4d|%.4d)", x, y);
-//    scr_overlay_set (0, 0, buf);
-//  }
+  //  {
+  //    char buf[4+4+3+1];
+  //    snprintf (buf, sizeof (buf), "(%.4d|%.4d)", x, y);
+  //    scr_overlay_set (0, 0, buf);
+  //  }
   scr_overlay_set (0, len + 1, attr);
   for (int i = 0; i < len; i++)
     {
@@ -358,39 +358,39 @@ map_function_key (KeySym keysym)
   else
     switch (keysym)
       {
-        case XK_Find:
-          param = 1;
-          break;
-        case XK_Insert:
-          param = 2;
-          break;
+      case XK_Find:
+        param = 1;
+        break;
+      case XK_Insert:
+        param = 2;
+        break;
 #ifdef DXK_Remove
-        case DXK_Remove:
+      case DXK_Remove:
 #endif
-        case XK_Execute:
-          param = 3;
-          break;
-        case XK_Select:
-          param = 4;
-          break;
-        case XK_Prior:
-          param = 5;
-          break;
-        case XK_Next:
-          param = 6;
-          break;
-        case XK_Home:
-          param = 7;
-          break;
-        case XK_End:
-          param = 8;
-          break;
-        case XK_Help:
-          param = 28;
-          break;
-        case XK_Menu:
-          param = 29;
-          break;
+      case XK_Execute:
+        param = 3;
+        break;
+      case XK_Select:
+        param = 4;
+        break;
+      case XK_Prior:
+        param = 5;
+        break;
+      case XK_Next:
+        param = 6;
+        break;
+      case XK_Home:
+        param = 7;
+        break;
+      case XK_End:
+        param = 8;
+        break;
+      case XK_Help:
+        param = 28;
+        break;
+      case XK_Menu:
+        param = 29;
+        break;
       }
   return param;
 }
@@ -508,127 +508,127 @@ rxvt_term::key_press (XKeyEvent &ev)
           switch (keysym)
             {
 #ifndef NO_BACKSPACE_KEY
-              case XK_BackSpace:
-                if (priv_modes & PrivMode_HaveBackSpace)
-                  {
-                    kbuf[0] = (!! (priv_modes & PrivMode_BackSpace)
-                               ^ !!ctrl) ? '\b' : '\177';
-                    kbuf[1] = '\0';
-                  }
-                else
-                  strcpy (kbuf, rs[Rs_backspace_key]);
-                break;
+            case XK_BackSpace:
+              if (priv_modes & PrivMode_HaveBackSpace)
+                {
+                  kbuf[0] = (!! (priv_modes & PrivMode_BackSpace)
+                             ^ !!ctrl) ? '\b' : '\177';
+                  kbuf[1] = '\0';
+                }
+              else
+                strcpy (kbuf, rs[Rs_backspace_key]);
+              break;
 #endif
 #ifndef NO_DELETE_KEY
-              case XK_Delete:
-                strcpy (kbuf, rs[Rs_delete_key]);
-                break;
+            case XK_Delete:
+              strcpy (kbuf, rs[Rs_delete_key]);
+              break;
 #endif
-              case XK_Tab:
-                if (shft)
-                  strcpy (kbuf, "\033[Z");
-                else
-                  {
+            case XK_Tab:
+              if (shft)
+                strcpy (kbuf, "\033[Z");
+              else
+                {
 #ifdef CTRL_TAB_MAKES_META
-                    if (ctrl)
-                      meta = 1;
+                  if (ctrl)
+                    meta = 1;
 #endif
 #ifdef MOD4_TAB_MAKES_META
-                    if (ev.state & Mod4Mask)
-                      meta = 1;
+                  if (ev.state & Mod4Mask)
+                    meta = 1;
 #endif
-                    newlen = 0;
-                  }
-                break;
-
-              case XK_Up:	/* "\033[A" */
-              case XK_Down:	/* "\033[B" */
-              case XK_Right:	/* "\033[C" */
-              case XK_Left:	/* "\033[D" */
-                strcpy (kbuf, "\033[Z");
-                kbuf[2] = "DACB"[keysym - XK_Left];
-                /* do Shift first */
-                if (shft)
-                  kbuf[2] = "dacb"[keysym - XK_Left];
-                else if (ctrl)
-                  {
-                    kbuf[1] = 'O';
-                    kbuf[2] = "dacb"[keysym - XK_Left];
-                  }
-                else if (priv_modes & PrivMode_aplCUR)
-                  kbuf[1] = 'O';
-                break;
-
-              case XK_KP_Enter:
-                /* allow shift to override */
-                if (kp)
-                  {
-                    strcpy (kbuf, "\033OM");
-                    break;
-                  }
-
-                /* FALLTHROUGH */
-
-              case XK_Return:
-                if (priv_modes & PrivMode_LFNL)
-                  {
-                    kbuf[0] = '\015';
-                    kbuf[1] = '\012';
-                    kbuf[2] = '\0';
-                  }
-                else
-                  {
-                    kbuf[0] = '\015';
-                    kbuf[1] = '\0';
-                  }
-                break;
-
-              case XK_KP_F1:	/* "\033OP" */
-              case XK_KP_F2:	/* "\033OQ" */
-              case XK_KP_F3:	/* "\033OR" */
-              case XK_KP_F4:	/* "\033OS" */
-                strcpy (kbuf, "\033OP");
-                kbuf[2] += (keysym - XK_KP_F1);
-                break;
-
-              case XK_KP_Multiply:	/* "\033Oj" : "*" */
-              case XK_KP_Add:		/* "\033Ok" : "+" */
-              case XK_KP_Separator:	/* "\033Ol" : "," */
-              case XK_KP_Subtract:	/* "\033Om" : "-" */
-              case XK_KP_Decimal:	/* "\033On" : "." */
-              case XK_KP_Divide:	/* "\033Oo" : "/" */
-              case XK_KP_0:		/* "\033Op" : "0" */
-              case XK_KP_1:		/* "\033Oq" : "1" */
-              case XK_KP_2:		/* "\033Or" : "2" */
-              case XK_KP_3:		/* "\033Os" : "3" */
-              case XK_KP_4:		/* "\033Ot" : "4" */
-              case XK_KP_5:		/* "\033Ou" : "5" */
-              case XK_KP_6:		/* "\033Ov" : "6" */
-              case XK_KP_7:		/* "\033Ow" : "7" */
-              case XK_KP_8:		/* "\033Ox" : "8" */
-              case XK_KP_9:		/* "\033Oy" : "9" */
-                /* allow shift to override */
-                if (kp)
-                  {
-                    strcpy (kbuf, "\033Oj");
-                    kbuf[2] += (keysym - XK_KP_Multiply);
-                  }
-                else
-                  {
-                    kbuf[0] = ('*' + (keysym - XK_KP_Multiply));
-                    kbuf[1] = '\0';
-                  }
-                break;
-
-              default:
-                {
-                  int param = map_function_key (keysym);
-                  if (param > 0)
-                    sprintf (kbuf,"\033[%d~", param);
-                  else
-                    newlen = 0;
+                  newlen = 0;
                 }
-                break;
+              break;
+
+            case XK_Up:	/* "\033[A" */
+            case XK_Down:	/* "\033[B" */
+            case XK_Right:	/* "\033[C" */
+            case XK_Left:	/* "\033[D" */
+              strcpy (kbuf, "\033[Z");
+              kbuf[2] = "DACB"[keysym - XK_Left];
+              /* do Shift first */
+              if (shft)
+                kbuf[2] = "dacb"[keysym - XK_Left];
+              else if (ctrl)
+                {
+                  kbuf[1] = 'O';
+                  kbuf[2] = "dacb"[keysym - XK_Left];
+                }
+              else if (priv_modes & PrivMode_aplCUR)
+                kbuf[1] = 'O';
+              break;
+
+            case XK_KP_Enter:
+              /* allow shift to override */
+              if (kp)
+                {
+                  strcpy (kbuf, "\033OM");
+                  break;
+                }
+
+              /* FALLTHROUGH */
+
+            case XK_Return:
+              if (priv_modes & PrivMode_LFNL)
+                {
+                  kbuf[0] = '\015';
+                  kbuf[1] = '\012';
+                  kbuf[2] = '\0';
+                }
+              else
+                {
+                  kbuf[0] = '\015';
+                  kbuf[1] = '\0';
+                }
+              break;
+
+            case XK_KP_F1:	/* "\033OP" */
+            case XK_KP_F2:	/* "\033OQ" */
+            case XK_KP_F3:	/* "\033OR" */
+            case XK_KP_F4:	/* "\033OS" */
+              strcpy (kbuf, "\033OP");
+              kbuf[2] += (keysym - XK_KP_F1);
+              break;
+
+            case XK_KP_Multiply:	/* "\033Oj" : "*" */
+            case XK_KP_Add:		/* "\033Ok" : "+" */
+            case XK_KP_Separator:	/* "\033Ol" : "," */
+            case XK_KP_Subtract:	/* "\033Om" : "-" */
+            case XK_KP_Decimal:	/* "\033On" : "." */
+            case XK_KP_Divide:	/* "\033Oo" : "/" */
+            case XK_KP_0:		/* "\033Op" : "0" */
+            case XK_KP_1:		/* "\033Oq" : "1" */
+            case XK_KP_2:		/* "\033Or" : "2" */
+            case XK_KP_3:		/* "\033Os" : "3" */
+            case XK_KP_4:		/* "\033Ot" : "4" */
+            case XK_KP_5:		/* "\033Ou" : "5" */
+            case XK_KP_6:		/* "\033Ov" : "6" */
+            case XK_KP_7:		/* "\033Ow" : "7" */
+            case XK_KP_8:		/* "\033Ox" : "8" */
+            case XK_KP_9:		/* "\033Oy" : "9" */
+              /* allow shift to override */
+              if (kp)
+                {
+                  strcpy (kbuf, "\033Oj");
+                  kbuf[2] += (keysym - XK_KP_Multiply);
+                }
+              else
+                {
+                  kbuf[0] = ('*' + (keysym - XK_KP_Multiply));
+                  kbuf[1] = '\0';
+                }
+              break;
+
+            default:
+              {
+                int param = map_function_key (keysym);
+                if (param > 0)
+                  sprintf (kbuf,"\033[%d~", param);
+                else
+                  newlen = 0;
+              }
+              break;
             }
 
           if (newlen)
@@ -691,7 +691,7 @@ rxvt_term::key_press (XKeyEvent &ev)
 #ifdef META8_OPTION
       && meta_char == C0_ESC
 #endif
-     )
+      )
     {
       *--kbuf = C0_ESC;
       len++;
@@ -712,29 +712,29 @@ rxvt_term::key_press (XKeyEvent &ev)
 #ifdef UNSHIFTED_SCROLLKEYS
           if (!ctrl && !meta)
 #else
-          if (IS_SCROLL_MOD)
+            if (IS_SCROLL_MOD)
 #endif
-            {
-              int lnsppg;
+              {
+                int lnsppg;
 
 #ifdef PAGING_CONTEXT_LINES
-              lnsppg = nrow - PAGING_CONTEXT_LINES;
+                lnsppg = nrow - PAGING_CONTEXT_LINES;
 #else
-              lnsppg = nrow * 4 / 5;
+                lnsppg = nrow * 4 / 5;
 #endif
-              max_it (lnsppg, 1);
+                max_it (lnsppg, 1);
 
-              if (keysym == XK_Prior)
-                {
-                  scr_page (lnsppg);
-                  return;
-                }
-              else if (keysym == XK_Next)
-                {
-                  scr_page (-lnsppg);
-                  return;
-                }
-            }
+                if (keysym == XK_Prior)
+                  {
+                    scr_page (lnsppg);
+                    return;
+                  }
+                else if (keysym == XK_Next)
+                  {
+                    scr_page (-lnsppg);
+                    return;
+                  }
+              }
 #ifdef SCROLL_ON_UPDOWN_KEYS
           if (IS_SCROLL_MOD)
             {
@@ -773,35 +773,45 @@ rxvt_term::key_press (XKeyEvent &ev)
             {
               switch (keysym)
                 {
-                    /* normal XTerm key bindings */
-                  case XK_Insert:	/* Shift+Insert = paste mouse selection */
-                    selection_request (ev.time);
-                    return;
+                  /* normal XTerm key bindings */
+                case XK_Insert:	/* Shift+Insert = paste mouse selection */
+                  selection_request (ev.time);
+                  return;
 #if TODO
-                    /* rxvt extras */
-                  case XK_KP_Add:	/* Shift+KP_Add = bigger font */
-                    return;
-                  case XK_KP_Subtract:	/* Shift+KP_Subtract = smaller font */
-                    return;
+                  /* rxvt extras */
+                case XK_KP_Add:	/* Shift+KP_Add = bigger font */
+                  return;
+                case XK_KP_Subtract:	/* Shift+KP_Subtract = smaller font */
+                  return;
 #endif
                 }
             }
         }
 
-      if (ctrl && meta && (keysym == XK_c || keysym == XK_v))
+      if (ctrl && (keysym == XK_Insert)  && (priv_modes & PrivMode_ShiftKeys))
         {
-          if (keysym == XK_v)
-            selection_request (ev.time, Sel_Clipboard);
-          else if (selection.len > 0)
-            {
-              free (selection.clip_text);
-              selection.clip_text = rxvt_wcsdup (selection.text, selection.len);
-              selection.clip_len = selection.len;
-              selection_grab (CurrentTime, true);
-            }
+          free (selection.clip_text);
+          selection.clip_text = rxvt_wcsdup (selection.text, selection.len);
+          selection.clip_len = selection.len;
+          selection_grab (CurrentTime, true);
 
           return;
         }
+
+      // if (ctrl && meta && (keysym == XK_c || keysym == XK_v))
+      //   {
+      //     if (keysym == XK_v)
+      //       selection_request (ev.time, Sel_Clipboard);
+      //     else if (selection.len > 0)
+      //       {
+      //         free (selection.clip_text);
+      //         selection.clip_text = rxvt_wcsdup (selection.text, selection.len);
+      //         selection.clip_len = selection.len;
+      //         selection_grab (CurrentTime, true);
+      //       }
+
+      //     return;
+      //   }
 
 #if ENABLE_FRILLS || ISO_14755
       // ISO 14755 support
@@ -831,7 +841,7 @@ rxvt_term::key_press (XKeyEvent &ev)
           else if ((hv = hex_keyval (ev)) >= 0)
             {
               iso14755buf = ((iso14755buf << 4) & ISO_14755_MASK)
-                          | hv | ISO_14755_51;
+                | hv | ISO_14755_51;
 # if ISO_14755
               iso14755_51 (iso14755buf & ISO_14755_MASK);
 # endif
@@ -894,8 +904,8 @@ rxvt_term::key_release (XKeyEvent &ev)
         // iso14755 part 5.2 handling: release time
         // first: controls
         if ((ev.state & ControlMask)
-             && ((keysym >= 0x40 && keysym <= 0x5f)
-                 || (keysym >= 0x61 && keysym <= 0x7f)))
+            && ((keysym >= 0x40 && keysym <= 0x5f)
+                || (keysym >= 0x61 && keysym <= 0x7f)))
           {
             iso14755buf = ISO_14755_51 | 0x2400 | (keysym & 0x1f);
             commit_iso14755 ();
@@ -1145,7 +1155,7 @@ static struct event_handler
   }
 
   event_handler ()
-  : yield_ev (this, &event_handler::yield_cb)
+    : yield_ev (this, &event_handler::yield_cb)
   {
   }
 } event_handler;
@@ -1326,8 +1336,8 @@ rxvt_term::mouse_report (XButtonEvent &ev)
        *  32 = Double Click
        */
       key_state = ((MEvent.state & ShiftMask) ? 4 : 0)
-                  + ((MEvent.state & ModMetaMask) ? 8 : 0)
-                  + ((MEvent.state & ControlMask) ? 16 : 0);
+        + ((MEvent.state & ModMetaMask) ? 8 : 0)
+        + ((MEvent.state & ControlMask) ? 16 : 0);
 #ifdef MOUSE_REPORT_DOUBLECLICK
       key_state += ((MEvent.clicks > 1) ? 32 : 0);
 #endif
@@ -1344,28 +1354,28 @@ rxvt_term::mouse_report (XButtonEvent &ev)
   if (key_state & 32)
     fputc ('2', stderr);
   fprintf (stderr, "]: <%d>, %d/%d\n",
-          button_number,
-          x,
-          y);
+           button_number,
+           x,
+           y);
 #endif
 
 #if ENABLE_FRILLS
   if (priv_modes & PrivMode_ExtMouseRight)
     tt_printf ("\033[%d;%d;%dM",
-              code + button_number + key_state,
-              x,
-              y);
+               code + button_number + key_state,
+               x,
+               y);
   else if (priv_modes & PrivMode_ExtModeMouse)
     tt_printf ("\033[M%c%lc%lc",
-              code + button_number + key_state,
-              wint_t (32 + x),
-              wint_t (32 + y));
+               code + button_number + key_state,
+               wint_t (32 + x),
+               wint_t (32 + y));
   else
 #endif
     tt_printf ("\033[M%c%c%c",
-              code + button_number + key_state,
-              32 + x,
-              32 + y);
+               code + button_number + key_state,
+               32 + x,
+               32 + y);
 }
 
 /*{{{ process an X event */
@@ -1388,308 +1398,308 @@ rxvt_term::x_cb (XEvent &ev)
 
   switch (ev.type)
     {
-      case KeyPress:
-        key_press (ev.xkey);
-        break;
+    case KeyPress:
+      key_press (ev.xkey);
+      break;
 
-      case KeyRelease:
-        key_release (ev.xkey);
-        break;
+    case KeyRelease:
+      key_release (ev.xkey);
+      break;
 
-      case ButtonPress:
-        button_press (ev.xbutton);
-        break;
+    case ButtonPress:
+      button_press (ev.xbutton);
+      break;
 
-      case ButtonRelease:
-        button_release (ev.xbutton);
-        break;
+    case ButtonRelease:
+      button_release (ev.xbutton);
+      break;
 
-      case ClientMessage:
-        if (ev.xclient.format == 32
-            && !HOOK_INVOKE ((this, HOOK_CLIENT_MESSAGE, DT_XEVENT, &ev, DT_END)))
-          {
-            if (ev.xclient.message_type == xa[XA_WM_PROTOCOLS])
-              {
-                if (!HOOK_INVOKE ((this, HOOK_WM_PROTOCOLS, DT_XEVENT, &ev, DT_END)))
-                  {
-                    if (ev.xclient.data.l[0] == xa[XA_WM_DELETE_WINDOW])
-                      {
-                        if (!HOOK_INVOKE ((this, HOOK_WM_DELETE_WINDOW, DT_XEVENT, &ev, DT_END)))
-                          destroy ();
-                      }
+    case ClientMessage:
+      if (ev.xclient.format == 32
+          && !HOOK_INVOKE ((this, HOOK_CLIENT_MESSAGE, DT_XEVENT, &ev, DT_END)))
+        {
+          if (ev.xclient.message_type == xa[XA_WM_PROTOCOLS])
+            {
+              if (!HOOK_INVOKE ((this, HOOK_WM_PROTOCOLS, DT_XEVENT, &ev, DT_END)))
+                {
+                  if (ev.xclient.data.l[0] == xa[XA_WM_DELETE_WINDOW])
+                    {
+                      if (!HOOK_INVOKE ((this, HOOK_WM_DELETE_WINDOW, DT_XEVENT, &ev, DT_END)))
+                        destroy ();
+                    }
 #if ENABLE_EWMH
-                    else if (ev.xclient.data.l[0] == xa[XA_NET_WM_PING])
-                      XSendEvent (dpy, ev.xclient.window = display->root,
-                                  False, SubstructureRedirectMask | SubstructureNotifyMask,
-                                  &ev);
+                  else if (ev.xclient.data.l[0] == xa[XA_NET_WM_PING])
+                    XSendEvent (dpy, ev.xclient.window = display->root,
+                                False, SubstructureRedirectMask | SubstructureNotifyMask,
+                                &ev);
 #endif
-                  }
-              }
+                }
+            }
 #if ENABLE_XEMBED
-            else if (ev.xclient.format == 32 && ev.xclient.message_type == xa[XA_XEMBED])
-              {
-                if (ev.xclient.data.l[1] == XEMBED_FOCUS_IN)
-                  focus_in ();
-                else if (ev.xclient.data.l[1] == XEMBED_FOCUS_OUT)
-                  focus_out ();
-              }
+          else if (ev.xclient.format == 32 && ev.xclient.message_type == xa[XA_XEMBED])
+            {
+              if (ev.xclient.data.l[1] == XEMBED_FOCUS_IN)
+                focus_in ();
+              else if (ev.xclient.data.l[1] == XEMBED_FOCUS_OUT)
+                focus_out ();
+            }
 #endif
-          }
-        break;
+        }
+      break;
 
-        /*
-         * XXX: this is not the _current_ arrangement
-         * Here's my conclusion:
-         * If the window is completely unobscured, use bitblt's
-         * to scroll. Even then, they're only used when doing partial
-         * screen scrolling. When partially obscured, we have to fill
-         * in the GraphicsExpose parts, which means that after each refresh,
-         * we need to wait for the graphics expose or Noexpose events,
-         * which ought to make things real slow!
-         */
-      case VisibilityNotify:
-        switch (ev.xvisibility.state)
-          {
-            case VisibilityUnobscured:
-              refresh_type = FAST_REFRESH;
-              break;
-            case VisibilityPartiallyObscured:
-              refresh_type = SLOW_REFRESH;
-              break;
-            default:
-              refresh_type = NO_REFRESH;
-              break;
-          }
-        break;
-
-      case FocusIn:
-        if (ev.xfocus.detail != NotifyInferior
-            && ev.xfocus.detail != NotifyPointer
-            && ev.xfocus.mode != NotifyGrab)
-          focus_in ();
-        break;
-
-      case FocusOut:
-        if (ev.xfocus.detail != NotifyInferior
-            && ev.xfocus.detail != NotifyPointer
-            && ev.xfocus.mode != NotifyGrab)
-          focus_out ();
-        break;
-
-      case ConfigureNotify:
-        if (ev.xconfigure.window == parent)
-          {
-            while (XCheckTypedWindowEvent (dpy, ev.xconfigure.window, ConfigureNotify, &ev))
-              ;
-
-            bool want_position_change = SHOULD_INVOKE (HOOK_POSITION_CHANGE);
-
-            if (want_position_change)
-              {
-                int x, y;
-
-                if (ev.xconfigure.send_event)
-                  {
-                    x = ev.xconfigure.x;
-                    y = ev.xconfigure.y;
-                  }
-                else
-                  get_window_origin (x, y);
-
-                if (x != parent_x || y != parent_y)
-                  {
-                    parent_x = x;
-                    parent_y = y;
-                    HOOK_INVOKE ((this, HOOK_POSITION_CHANGE, DT_INT, x, DT_INT, y, DT_END));
-                  }
-              }
-
-            if (szHint.width != ev.xconfigure.width || szHint.height != ev.xconfigure.height)
-              {
-                seen_resize = 1;
-                resize_all_windows (ev.xconfigure.width, ev.xconfigure.height, 1);
-              }
-
-            HOOK_INVOKE ((this, HOOK_CONFIGURE_NOTIFY, DT_XEVENT, &ev, DT_END));
-          }
-        break;
-
-      case PropertyNotify:
-        HOOK_INVOKE ((this, HOOK_PROPERTY_NOTIFY, DT_XEVENT, &ev, DT_END));
-        break;
-
-      case SelectionClear:
-        selection_clear (ev.xselectionclear.selection == xa[XA_CLIPBOARD]);
-        break;
-
-      case SelectionRequest:
-        selection_send (ev.xselectionrequest);
-        break;
-
-      case MapNotify:
-        mapped = 1;
-#ifdef TEXT_BLINK
-        text_blink_ev.start ();
-#endif
-        HOOK_INVOKE ((this, HOOK_MAP_NOTIFY, DT_XEVENT, &ev, DT_END));
-        break;
-
-      case UnmapNotify:
-        mapped = 0;
-#ifdef TEXT_BLINK
-        text_blink_ev.stop ();
-#endif
-        HOOK_INVOKE ((this, HOOK_UNMAP_NOTIFY, DT_XEVENT, &ev, DT_END));
-        break;
-
-      case GraphicsExpose:
-      case Expose:
-        if (ev.xany.window == vt)
-          {
-            do
-              {
-                scr_expose (ev.xexpose.x, ev.xexpose.y,
-                            ev.xexpose.width, ev.xexpose.height, false);
-              }
-            while (XCheckTypedWindowEvent (dpy, vt, ev.xany.type, &ev));
-
-            ev.xany.type = ev.xany.type == Expose ? GraphicsExpose : Expose;
-
-            while (XCheckTypedWindowEvent (dpy, vt, ev.xany.type, &ev))
-              {
-                scr_expose (ev.xexpose.x, ev.xexpose.y,
-                            ev.xexpose.width, ev.xexpose.height, false);
-              }
-
-            want_refresh = 1;
-          }
-        else
-          {
-            XEvent unused_event;
-
-            while (XCheckTypedWindowEvent (dpy, ev.xany.window, Expose, &unused_event))
-              ;
-            while (XCheckTypedWindowEvent (dpy, ev.xany.window, GraphicsExpose, &unused_event))
-              ;
-
-            if (scrollBar.state && ev.xany.window == scrollBar.win)
-              {
-                scrollBar.state = SB_STATE_IDLE;
-                scrollBar.show (0);
-              }
-          }
-        break;
-
-      case MotionNotify:
-#ifdef POINTER_BLANK
-        if (hidden_pointer)
-          pointer_unblank ();
-#endif
-        if (!bypass_keystate
-            && ((priv_modes & PrivMode_MouseBtnEvent && ev.xbutton.state & (Button1Mask|Button2Mask|Button3Mask))
-                || priv_modes & PrivMode_MouseAnyEvent))
-          mouse_report (ev.xbutton);
-        if ((priv_modes & PrivMode_mouse_report) && !bypass_keystate)
+      /*
+       * XXX: this is not the _current_ arrangement
+       * Here's my conclusion:
+       * If the window is completely unobscured, use bitblt's
+       * to scroll. Even then, they're only used when doing partial
+       * screen scrolling. When partially obscured, we have to fill
+       * in the GraphicsExpose parts, which means that after each refresh,
+       * we need to wait for the graphics expose or Noexpose events,
+       * which ought to make things real slow!
+       */
+    case VisibilityNotify:
+      switch (ev.xvisibility.state)
+        {
+        case VisibilityUnobscured:
+          refresh_type = FAST_REFRESH;
           break;
+        case VisibilityPartiallyObscured:
+          refresh_type = SLOW_REFRESH;
+          break;
+        default:
+          refresh_type = NO_REFRESH;
+          break;
+        }
+      break;
 
-        if (ev.xany.window == vt)
-          {
-            if (SHOULD_INVOKE (HOOK_MOTION_NOTIFY)
-                && HOOK_INVOKE ((this, HOOK_MOTION_NOTIFY, DT_XEVENT, &ev, DT_END)))
-              ; // nop
-            else if (ev.xbutton.state & (Button1Mask | Button3Mask))
-              {
-                while (XCheckTypedWindowEvent (dpy, vt, MotionNotify, &ev))
-                  ;
+    case FocusIn:
+      if (ev.xfocus.detail != NotifyInferior
+          && ev.xfocus.detail != NotifyPointer
+          && ev.xfocus.mode != NotifyGrab)
+        focus_in ();
+      break;
 
-                XQueryPointer (dpy, vt,
-                               &unused_root, &unused_child,
-                               &unused_root_x, &unused_root_y,
-                               &ev.xbutton.x, &ev.xbutton.y,
-                               &ev.xbutton.state);
+    case FocusOut:
+      if (ev.xfocus.detail != NotifyInferior
+          && ev.xfocus.detail != NotifyPointer
+          && ev.xfocus.mode != NotifyGrab)
+        focus_out ();
+      break;
+
+    case ConfigureNotify:
+      if (ev.xconfigure.window == parent)
+        {
+          while (XCheckTypedWindowEvent (dpy, ev.xconfigure.window, ConfigureNotify, &ev))
+            ;
+
+          bool want_position_change = SHOULD_INVOKE (HOOK_POSITION_CHANGE);
+
+          if (want_position_change)
+            {
+              int x, y;
+
+              if (ev.xconfigure.send_event)
+                {
+                  x = ev.xconfigure.x;
+                  y = ev.xconfigure.y;
+                }
+              else
+                get_window_origin (x, y);
+
+              if (x != parent_x || y != parent_y)
+                {
+                  parent_x = x;
+                  parent_y = y;
+                  HOOK_INVOKE ((this, HOOK_POSITION_CHANGE, DT_INT, x, DT_INT, y, DT_END));
+                }
+            }
+
+          if (szHint.width != ev.xconfigure.width || szHint.height != ev.xconfigure.height)
+            {
+              seen_resize = 1;
+              resize_all_windows (ev.xconfigure.width, ev.xconfigure.height, 1);
+            }
+
+          HOOK_INVOKE ((this, HOOK_CONFIGURE_NOTIFY, DT_XEVENT, &ev, DT_END));
+        }
+      break;
+
+    case PropertyNotify:
+      HOOK_INVOKE ((this, HOOK_PROPERTY_NOTIFY, DT_XEVENT, &ev, DT_END));
+      break;
+
+    case SelectionClear:
+      selection_clear (ev.xselectionclear.selection == xa[XA_CLIPBOARD]);
+      break;
+
+    case SelectionRequest:
+      selection_send (ev.xselectionrequest);
+      break;
+
+    case MapNotify:
+      mapped = 1;
+#ifdef TEXT_BLINK
+      text_blink_ev.start ();
+#endif
+      HOOK_INVOKE ((this, HOOK_MAP_NOTIFY, DT_XEVENT, &ev, DT_END));
+      break;
+
+    case UnmapNotify:
+      mapped = 0;
+#ifdef TEXT_BLINK
+      text_blink_ev.stop ();
+#endif
+      HOOK_INVOKE ((this, HOOK_UNMAP_NOTIFY, DT_XEVENT, &ev, DT_END));
+      break;
+
+    case GraphicsExpose:
+    case Expose:
+      if (ev.xany.window == vt)
+        {
+          do
+            {
+              scr_expose (ev.xexpose.x, ev.xexpose.y,
+                          ev.xexpose.width, ev.xexpose.height, false);
+            }
+          while (XCheckTypedWindowEvent (dpy, vt, ev.xany.type, &ev));
+
+          ev.xany.type = ev.xany.type == Expose ? GraphicsExpose : Expose;
+
+          while (XCheckTypedWindowEvent (dpy, vt, ev.xany.type, &ev))
+            {
+              scr_expose (ev.xexpose.x, ev.xexpose.y,
+                          ev.xexpose.width, ev.xexpose.height, false);
+            }
+
+          want_refresh = 1;
+        }
+      else
+        {
+          XEvent unused_event;
+
+          while (XCheckTypedWindowEvent (dpy, ev.xany.window, Expose, &unused_event))
+            ;
+          while (XCheckTypedWindowEvent (dpy, ev.xany.window, GraphicsExpose, &unused_event))
+            ;
+
+          if (scrollBar.state && ev.xany.window == scrollBar.win)
+            {
+              scrollBar.state = SB_STATE_IDLE;
+              scrollBar.show (0);
+            }
+        }
+      break;
+
+    case MotionNotify:
+#ifdef POINTER_BLANK
+      if (hidden_pointer)
+        pointer_unblank ();
+#endif
+      if (!bypass_keystate
+          && ((priv_modes & PrivMode_MouseBtnEvent && ev.xbutton.state & (Button1Mask|Button2Mask|Button3Mask))
+              || priv_modes & PrivMode_MouseAnyEvent))
+        mouse_report (ev.xbutton);
+      if ((priv_modes & PrivMode_mouse_report) && !bypass_keystate)
+        break;
+
+      if (ev.xany.window == vt)
+        {
+          if (SHOULD_INVOKE (HOOK_MOTION_NOTIFY)
+              && HOOK_INVOKE ((this, HOOK_MOTION_NOTIFY, DT_XEVENT, &ev, DT_END)))
+            ; // nop
+          else if (ev.xbutton.state & (Button1Mask | Button3Mask))
+            {
+              while (XCheckTypedWindowEvent (dpy, vt, MotionNotify, &ev))
+                ;
+
+              XQueryPointer (dpy, vt,
+                             &unused_root, &unused_child,
+                             &unused_root_x, &unused_root_y,
+                             &ev.xbutton.x, &ev.xbutton.y,
+                             &ev.xbutton.state);
 #ifdef MOUSE_THRESHOLD
-                /* deal with a `jumpy' mouse */
-                if (ev.xmotion.time - MEvent.time > MOUSE_THRESHOLD)
+              /* deal with a `jumpy' mouse */
+              if (ev.xmotion.time - MEvent.time > MOUSE_THRESHOLD)
 #endif
-                  {
+                {
 #if ISO_14755
-                    // 5.4
-                    if (iso14755buf & (ISO_14755_STARTED | ISO_14755_54))
-                      {
-                        iso14755_54 (ev.xbutton.x, ev.xbutton.y);
-                        break;
-                      }
+                  // 5.4
+                  if (iso14755buf & (ISO_14755_STARTED | ISO_14755_54))
+                    {
+                      iso14755_54 (ev.xbutton.x, ev.xbutton.y);
+                      break;
+                    }
 #endif
-                    selection_extend (ev.xbutton.x, ev.xbutton.y,
-                                      ev.xbutton.state & Button3Mask ? 2 : 0);
+                  selection_extend (ev.xbutton.x, ev.xbutton.y,
+                                    ev.xbutton.state & Button3Mask ? 2 : 0);
 
 #ifdef SELECTION_SCROLLING
-                    if (ev.xbutton.y < int_bwidth
-                        || Pixel2Row (ev.xbutton.y) > (nrow-1))
-                      {
-                        page_dirn scroll_selection_dir;
-                        int dist;
+                  if (ev.xbutton.y < int_bwidth
+                      || Pixel2Row (ev.xbutton.y) > (nrow-1))
+                    {
+                      page_dirn scroll_selection_dir;
+                      int dist;
 
-                        /* don't clobber the current delay if we are
-                         * already in the middle of scrolling.
-                         */
-                        if (!sel_scroll_ev.is_active ())
-                          sel_scroll_ev.start (SCROLLBAR_INITIAL_DELAY, SCROLLBAR_CONTINUOUS_DELAY);
+                      /* don't clobber the current delay if we are
+                       * already in the middle of scrolling.
+                       */
+                      if (!sel_scroll_ev.is_active ())
+                        sel_scroll_ev.start (SCROLLBAR_INITIAL_DELAY, SCROLLBAR_CONTINUOUS_DELAY);
 
-                        /* save the event params so we can highlight
-                         * the selection in the pending-scroll loop
-                         */
-                        selection_save_x = ev.xbutton.x;
-                        selection_save_y = ev.xbutton.y;
-                        selection_save_state = (ev.xbutton.state & Button3Mask) ? 2 : 0;
+                      /* save the event params so we can highlight
+                       * the selection in the pending-scroll loop
+                       */
+                      selection_save_x = ev.xbutton.x;
+                      selection_save_y = ev.xbutton.y;
+                      selection_save_state = (ev.xbutton.state & Button3Mask) ? 2 : 0;
 
-                        /* calc number of lines to scroll */
-                        if (ev.xbutton.y < int_bwidth)
-                          {
-                            scroll_selection_dir = UP;
-                            dist = int_bwidth - ev.xbutton.y;
-                          }
-                        else
-                          {
-                            scroll_selection_dir = DN;
-                            dist = ev.xbutton.y - (int_bwidth + vt_height);
-                          }
+                      /* calc number of lines to scroll */
+                      if (ev.xbutton.y < int_bwidth)
+                        {
+                          scroll_selection_dir = UP;
+                          dist = int_bwidth - ev.xbutton.y;
+                        }
+                      else
+                        {
+                          scroll_selection_dir = DN;
+                          dist = ev.xbutton.y - (int_bwidth + vt_height);
+                        }
 
-                        scroll_selection_lines = Pixel2Height (dist)
-                                                 / SELECTION_SCROLL_LINE_SPEEDUP
-                                                 + 1;
-                        min_it (scroll_selection_lines,
-                                SELECTION_SCROLL_MAX_LINES);
-                        scroll_selection_lines *= scroll_selection_dir;
-                      }
-                    else
-                      {
-                        /* we are within the text window, so we
-                         * shouldn't be scrolling
-                         */
-                        sel_scroll_ev.stop();
-                      }
+                      scroll_selection_lines = Pixel2Height (dist)
+                        / SELECTION_SCROLL_LINE_SPEEDUP
+                        + 1;
+                      min_it (scroll_selection_lines,
+                              SELECTION_SCROLL_MAX_LINES);
+                      scroll_selection_lines *= scroll_selection_dir;
+                    }
+                  else
+                    {
+                      /* we are within the text window, so we
+                       * shouldn't be scrolling
+                       */
+                      sel_scroll_ev.stop();
+                    }
 #endif
-                  }
-              }
-          }
-        else if (scrollBar.state == SB_STATE_MOTION && ev.xany.window == scrollBar.win)
-          {
-            while (XCheckTypedWindowEvent (dpy, scrollBar.win,
-                                           MotionNotify, &ev))
-              ;
+                }
+            }
+        }
+      else if (scrollBar.state == SB_STATE_MOTION && ev.xany.window == scrollBar.win)
+        {
+          while (XCheckTypedWindowEvent (dpy, scrollBar.win,
+                                         MotionNotify, &ev))
+            ;
 
-            XQueryPointer (dpy, scrollBar.win,
-                          &unused_root, &unused_child,
-                          &unused_root_x, &unused_root_y,
-                          &ev.xbutton.x, &ev.xbutton.y,
-                          &unused_mask);
-            scr_move_to (scrollBar.position (ev.xbutton.y) - csrO,
-                         scrollBar.size ());
-            want_refresh = 1;
-            scrollBar.show (1);
-          }
-        break;
+          XQueryPointer (dpy, scrollBar.win,
+                         &unused_root, &unused_child,
+                         &unused_root_x, &unused_root_y,
+                         &ev.xbutton.x, &ev.xbutton.y,
+                         &unused_mask);
+          scr_move_to (scrollBar.position (ev.xbutton.y) - csrO,
+                       scrollBar.size ());
+          want_refresh = 1;
+          scrollBar.show (1);
+        }
+      break;
     }
 
 #if defined(CURSOR_BLINK)
@@ -1843,18 +1853,18 @@ rxvt_term::rootwin_cb (XEvent &ev)
 
   switch (ev.type)
     {
-      case PropertyNotify:
-        /*
-         * if user used some Esetroot compatible prog to set the root bg,
-         * use the property to determine the pixmap.  We use it later on.
-         */
-        if (ev.xproperty.atom == xa[XA_XROOTPMAP_ID]
-            || ev.xproperty.atom == xa[XA_ESETROOT_PMAP_ID])
-          {
-            HOOK_INVOKE ((this, HOOK_ROOTPMAP_CHANGE, DT_END));
-          }
+    case PropertyNotify:
+      /*
+       * if user used some Esetroot compatible prog to set the root bg,
+       * use the property to determine the pixmap.  We use it later on.
+       */
+      if (ev.xproperty.atom == xa[XA_XROOTPMAP_ID]
+          || ev.xproperty.atom == xa[XA_ESETROOT_PMAP_ID])
+        {
+          HOOK_INVOKE ((this, HOOK_ROOTPMAP_CHANGE, DT_END));
+        }
 
-        break;
+      break;
     }
 
   refresh_check ();
@@ -1932,44 +1942,44 @@ rxvt_term::button_press (XButtonEvent &ev)
 
           switch (ev.button)
             {
-              case Button1:
-                /* allow meta + click to select rectangular areas */
-                /* should be done in screen.C */
+            case Button1:
+              /* allow meta + click to select rectangular areas */
+              /* should be done in screen.C */
 #if ENABLE_FRILLS
-                selection.rect = !!(ev.state & ModMetaMask);
+              selection.rect = !!(ev.state & ModMetaMask);
 #else
-                selection.rect = false;
+              selection.rect = false;
 #endif
 
-                /* allow shift+left click to extend selection */
-                if (ev.state & ShiftMask && !(priv_modes & PrivMode_mouse_report))
-                  {
-                    if (MEvent.button == Button1 && clickintime)
-                      selection_rotate (ev.x, ev.y);
-                    else
-                      selection_extend (ev.x, ev.y, 1);
-                  }
-                else
-                  {
-                    if (MEvent.button == Button1 && clickintime)
-                      MEvent.clicks++;
-                    else
-                      MEvent.clicks = 1;
+              /* allow shift+left click to extend selection */
+              if (ev.state & ShiftMask && !(priv_modes & PrivMode_mouse_report))
+                {
+                  if (MEvent.button == Button1 && clickintime)
+                    selection_rotate (ev.x, ev.y);
+                  else
+                    selection_extend (ev.x, ev.y, 1);
+                }
+              else
+                {
+                  if (MEvent.button == Button1 && clickintime)
+                    MEvent.clicks++;
+                  else
+                    MEvent.clicks = 1;
 
-                    selection_click (MEvent.clicks, ev.x, ev.y);
-                  }
+                  selection_click (MEvent.clicks, ev.x, ev.y);
+                }
 
-                MEvent.button = Button1;
-                break;
+              MEvent.button = Button1;
+              break;
 
-              case Button3:
-                if (MEvent.button == Button3 && clickintime)
-                  selection_rotate (ev.x, ev.y);
-                else
-                  selection_extend (ev.x, ev.y, 1);
+            case Button3:
+              if (MEvent.button == Button3 && clickintime)
+                selection_rotate (ev.x, ev.y);
+              else
+                selection_extend (ev.x, ev.y, 1);
 
-                MEvent.button = Button3;
-                break;
+              MEvent.button = Button3;
+              break;
             }
         }
 
@@ -2015,15 +2025,15 @@ rxvt_term::button_press (XButtonEvent &ev)
           else
             switch (ev.button)
               {
-                case Button2:
-                  tt_printf ("\014");
-                  break;
-                case Button1:
-                  tt_printf ("\033[6~");
-                  break;
-                case Button3:
-                  tt_printf ("\033[5~");
-                  break;
+              case Button2:
+                tt_printf ("\014");
+                break;
+              case Button1:
+                tt_printf ("\033[6~");
+                break;
+              case Button3:
+                tt_printf ("\033[5~");
+                break;
               }
         }
       else
@@ -2046,60 +2056,60 @@ rxvt_term::button_press (XButtonEvent &ev)
           else
             switch (ev.button)
               {
-                case Button2:
-                  switch (scrollBar.align)
-                    {
-                      case SB_ALIGN_TOP:
-                        csrO = 0;
-                        break;
-                      case SB_ALIGN_CENTRE:
-                        csrO = (scrollBar.bot - scrollBar.top) / 2;
-                        break;
-                      case SB_ALIGN_BOTTOM:
-                        csrO = scrollBar.bot - scrollBar.top;
-                        break;
-                    }
+              case Button2:
+                switch (scrollBar.align)
+                  {
+                  case SB_ALIGN_TOP:
+                    csrO = 0;
+                    break;
+                  case SB_ALIGN_CENTRE:
+                    csrO = (scrollBar.bot - scrollBar.top) / 2;
+                    break;
+                  case SB_ALIGN_BOTTOM:
+                    csrO = scrollBar.bot - scrollBar.top;
+                    break;
+                  }
 
-                  if (scrollBar.style == SB_STYLE_XTERM
-                      || scrollBar.above_slider (ev.y)
-                      || scrollBar.below_slider (ev.y))
-                    scr_move_to (scrollBar.position (ev.y) - csrO, scrollBar.size ());
+                if (scrollBar.style == SB_STYLE_XTERM
+                    || scrollBar.above_slider (ev.y)
+                    || scrollBar.below_slider (ev.y))
+                  scr_move_to (scrollBar.position (ev.y) - csrO, scrollBar.size ());
 
-                  scrollBar.state = SB_STATE_MOTION;
-                  break;
+                scrollBar.state = SB_STATE_MOTION;
+                break;
 
-                case Button1:
-                  if (scrollBar.align == SB_ALIGN_CENTRE)
-                    csrO = ev.y - scrollBar.top;
-                  /* FALLTHROUGH */
+              case Button1:
+                if (scrollBar.align == SB_ALIGN_CENTRE)
+                  csrO = ev.y - scrollBar.top;
+                /* FALLTHROUGH */
 
-                case Button3:
-                  if (scrollBar.style != SB_STYLE_XTERM)
-                    {
-                      if (scrollBar.above_slider (ev.y))
+              case Button3:
+                if (scrollBar.style != SB_STYLE_XTERM)
+                  {
+                    if (scrollBar.above_slider (ev.y))
 # ifdef RXVT_SCROLL_FULL
-                        scr_page (UP, nrow - 1);
+                      scr_page (UP, nrow - 1);
 # else
-                        scr_page (UP, nrow / 4);
+                    scr_page (UP, nrow / 4);
 # endif
-                      else if (scrollBar.below_slider (ev.y))
+                    else if (scrollBar.below_slider (ev.y))
 # ifdef RXVT_SCROLL_FULL
-                        scr_page (DN, nrow - 1);
+                      scr_page (DN, nrow - 1);
 # else
-                        scr_page (DN, nrow / 4);
+                    scr_page (DN, nrow / 4);
 # endif
-                      else
-                        scrollBar.state = SB_STATE_MOTION;
-                    }
-                  else
-                    {
-                      scr_page ((ev.button == Button1 ? DN : UP),
-                                (nrow
-                                 * scrollBar.position (ev.y)
-                                 / scrollBar.size ()));
-                    }
+                    else
+                      scrollBar.state = SB_STATE_MOTION;
+                  }
+                else
+                  {
+                    scr_page ((ev.button == Button1 ? DN : UP),
+                              (nrow
+                               * scrollBar.position (ev.y)
+                               / scrollBar.size ()));
+                  }
 
-                  break;
+                break;
               }
         }
 
@@ -2172,49 +2182,49 @@ rxvt_term::button_release (XButtonEvent &ev)
 
       switch (ev.button)
         {
-          case Button1:
-          case Button3:
-            selection_make (ev.time);
-            break;
+        case Button1:
+        case Button3:
+          selection_make (ev.time);
+          break;
 
-          case Button2:
-            if (IN_RANGE_EXC (ev.x, 0, vt_width) && IN_RANGE_EXC (ev.y, 0, vt_height)) // inside window?
-              selection_request (ev.time, ev.state & ModMetaMask ? Sel_Clipboard : Sel_Primary);
-            break;
+        case Button2:
+          if (IN_RANGE_EXC (ev.x, 0, vt_width) && IN_RANGE_EXC (ev.y, 0, vt_height)) // inside window?
+            selection_request (ev.time, ev.state & ModMetaMask ? Sel_Clipboard : Sel_Primary);
+          break;
 
 #ifdef MOUSE_WHEEL
-          case Button4:
-          case Button5:
-            {
-              int lines;
-              page_dirn dirn;
+        case Button4:
+        case Button5:
+          {
+            int lines;
+            page_dirn dirn;
 
-              dirn = ev.button == Button4 ? UP : DN;
+            dirn = ev.button == Button4 ? UP : DN;
 
-              if (ev.state & ShiftMask)
-                lines = 1;
-              else if (option (Opt_mouseWheelScrollPage))
-                lines = nrow - 1;
-              else
-                lines = 5;
+            if (ev.state & ShiftMask)
+              lines = 1;
+            else if (option (Opt_mouseWheelScrollPage))
+              lines = nrow - 1;
+            else
+              lines = 5;
 
 # ifdef MOUSE_SLIP_WHEELING
-              if (ev.state & ControlMask)
-                {
-                  mouse_slip_wheel_speed += dirn;
-                  clamp_it (mouse_slip_wheel_speed, -nrow, nrow);
+            if (ev.state & ControlMask)
+              {
+                mouse_slip_wheel_speed += dirn;
+                clamp_it (mouse_slip_wheel_speed, -nrow, nrow);
 
-                  if (!slip_wheel_ev.is_active ())
-                    slip_wheel_ev.start (SCROLLBAR_CONTINUOUS_DELAY, SCROLLBAR_CONTINUOUS_DELAY);
-                }
-              else
+                if (!slip_wheel_ev.is_active ())
+                  slip_wheel_ev.start (SCROLLBAR_CONTINUOUS_DELAY, SCROLLBAR_CONTINUOUS_DELAY);
+              }
+            else
 # endif
-                {
-                  scr_page (dirn, lines);
-                  scrollBar.show (1);
-                }
-            }
-            break;
+              {
+                scr_page (dirn, lines);
+                scrollBar.show (1);
+              }
+          }
+          break;
 #endif
         }
     }
@@ -2391,8 +2401,8 @@ uint32_t ecb_hot
 rxvt_term::next_octet () NOTHROW
 {
   return cmdbuf_ptr < cmdbuf_endp
-         ? (unsigned char)*cmdbuf_ptr++
-         : NOCHAR;
+    ? (unsigned char)*cmdbuf_ptr++
+    : NOCHAR;
 }
 
 static class out_of_input out_of_input;
@@ -2501,7 +2511,7 @@ rxvt_term::process_print_pipe ()
 
 enum {
   C1_40 = 0x40,
-          C1_41 , C1_BPH, C1_NBH, C1_44 , C1_NEL, C1_SSA, C1_ESA,
+  C1_41 , C1_BPH, C1_NBH, C1_44 , C1_NEL, C1_SSA, C1_ESA,
   C1_HTS, C1_HTJ, C1_VTS, C1_PLD, C1_PLU, C1_RI , C1_SS2, C1_SS3,
   C1_DCS, C1_PU1, C1_PU2, C1_STS, C1_CCH, C1_MW , C1_SPA, C1_EPA,
   C1_SOS, C1_59 , C1_SCI, C1_CSI, CS_ST , C1_OSC, C1_PM , C1_APC,
@@ -2513,50 +2523,50 @@ rxvt_term::process_nonprinting (unicode_t ch)
 {
   switch (ch)
     {
-      case C0_ESC:
-        process_escape_seq ();
-        break;
-      case C0_ENQ:	/* terminal Status */
-        if (rs[Rs_answerbackstring])
-          tt_write (rs [Rs_answerbackstring], strlen (rs [Rs_answerbackstring]));
-        else
-          tt_write (VT100_ANS, strlen (VT100_ANS));
-        break;
-      case C0_BEL:	/* bell */
-        scr_bell ();
-        break;
-      case C0_BS:		/* backspace */
-        scr_backspace ();
-        break;
-      case C0_HT:		/* tab */
-        scr_tab (1);
-        break;
-      case C0_CR:		/* carriage return */
-        scr_gotorc (0, 0, R_RELATIVE);
-        break;
-      case C0_VT:		/* vertical tab, form feed */
-      case C0_FF:
-      case C0_LF:		/* line feed */
-        scr_index (UP);
-        break;
-      case C0_SO:		/* shift out - acs */
-        scr_charset_choose (1);
-        break;
-      case C0_SI:		/* shift in - acs */
-        scr_charset_choose (0);
-        break;
+    case C0_ESC:
+      process_escape_seq ();
+      break;
+    case C0_ENQ:	/* terminal Status */
+      if (rs[Rs_answerbackstring])
+        tt_write (rs [Rs_answerbackstring], strlen (rs [Rs_answerbackstring]));
+      else
+        tt_write (VT100_ANS, strlen (VT100_ANS));
+      break;
+    case C0_BEL:	/* bell */
+      scr_bell ();
+      break;
+    case C0_BS:		/* backspace */
+      scr_backspace ();
+      break;
+    case C0_HT:		/* tab */
+      scr_tab (1);
+      break;
+    case C0_CR:		/* carriage return */
+      scr_gotorc (0, 0, R_RELATIVE);
+      break;
+    case C0_VT:		/* vertical tab, form feed */
+    case C0_FF:
+    case C0_LF:		/* line feed */
+      scr_index (UP);
+      break;
+    case C0_SO:		/* shift out - acs */
+      scr_charset_choose (1);
+      break;
+    case C0_SI:		/* shift in - acs */
+      scr_charset_choose (0);
+      break;
 
 #ifdef EIGHT_BIT_CONTROLS
       // 8-bit controls
-      case 0x90:		/* DCS */
-        process_dcs_seq ();
-        break;
-      case 0x9b:		/* CSI */
-        process_csi_seq ();
-        break;
-      case 0x9d:		/* OSC */
-        process_osc_seq ();
-        break;
+    case 0x90:		/* DCS */
+      process_dcs_seq ();
+      break;
+    case 0x9b:		/* CSI */
+      process_csi_seq ();
+      break;
+    case 0x9d:		/* OSC */
+      process_osc_seq ();
+      break;
 #endif
     }
 }
@@ -2571,53 +2581,53 @@ rxvt_term::process_escape_vt52 (unicode_t ch)
 
   switch (ch)
     {
-      case 'A':		/* cursor up */
-        scr_gotorc (-1, 0, R_RELATIVE | C_RELATIVE);
-        break;
-      case 'B':		/* cursor down */
-        scr_gotorc (1, 0, R_RELATIVE | C_RELATIVE);
-        break;
-      case 'C':		/* cursor right */
-        scr_gotorc (0, 1, R_RELATIVE | C_RELATIVE);
-        break;
-      case 'D':		/* cursor left */
-        scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
-        break;
-      case 'H':		/* cursor home */
-        scr_gotorc (0, 0, 0);
-        break;
-      case 'I':		/* cursor up and scroll down if needed */
-        scr_index (DN);
-        break;
-      case 'J':		/* erase to end of screen */
-        scr_erase_screen (0);
-        break;
-      case 'K':		/* erase to end of line */
-        scr_erase_line (0);
-        break;
-      case 'Y':         	/* move to specified row and col */
-        /* full command is 'ESC Y row col' where row and col
-         * are encoded by adding 32 and sending the ascii
-         * character.  eg. SPACE = 0, '+' = 13, '0' = 18,
-         * etc. */
-        row = cmd_getc () - ' ';
-        col = cmd_getc () - ' ';
-        scr_gotorc (row, col, 0);
-        break;
-      case 'Z':		/* identify the terminal type */
-        tt_printf ("\033/Z");	/* I am a VT100 emulating a VT52 */
-        break;
-      case '<':		/* turn off VT52 mode */
-        priv_modes &= ~PrivMode_vt52;
-        break;
-      case 'F':     	/* use special graphics character set */
-      case 'G':           /* use regular character set */
-        /* unimplemented */
-        break;
-      case '=':     	/* use alternate keypad mode */
-      case '>':           /* use regular keypad mode */
-        /* unimplemented */
-        break;
+    case 'A':		/* cursor up */
+      scr_gotorc (-1, 0, R_RELATIVE | C_RELATIVE);
+      break;
+    case 'B':		/* cursor down */
+      scr_gotorc (1, 0, R_RELATIVE | C_RELATIVE);
+      break;
+    case 'C':		/* cursor right */
+      scr_gotorc (0, 1, R_RELATIVE | C_RELATIVE);
+      break;
+    case 'D':		/* cursor left */
+      scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
+      break;
+    case 'H':		/* cursor home */
+      scr_gotorc (0, 0, 0);
+      break;
+    case 'I':		/* cursor up and scroll down if needed */
+      scr_index (DN);
+      break;
+    case 'J':		/* erase to end of screen */
+      scr_erase_screen (0);
+      break;
+    case 'K':		/* erase to end of line */
+      scr_erase_line (0);
+      break;
+    case 'Y':         	/* move to specified row and col */
+      /* full command is 'ESC Y row col' where row and col
+       * are encoded by adding 32 and sending the ascii
+       * character.  eg. SPACE = 0, '+' = 13, '0' = 18,
+       * etc. */
+      row = cmd_getc () - ' ';
+      col = cmd_getc () - ' ';
+      scr_gotorc (row, col, 0);
+      break;
+    case 'Z':		/* identify the terminal type */
+      tt_printf ("\033/Z");	/* I am a VT100 emulating a VT52 */
+      break;
+    case '<':		/* turn off VT52 mode */
+      priv_modes &= ~PrivMode_vt52;
+      break;
+    case 'F':     	/* use special graphics character set */
+    case 'G':           /* use regular character set */
+      /* unimplemented */
+      break;
+    case '=':     	/* use alternate keypad mode */
+    case '>':           /* use regular keypad mode */
+      /* unimplemented */
+      break;
     }
 }
 /*}}} */
@@ -2637,122 +2647,122 @@ rxvt_term::process_escape_seq ()
 
   switch (ch)
     {
-      case '#':
-        if (cmd_getc () == '8')
-          scr_E ();
-        break;
-      case '(':
-        scr_charset_set (0, (unsigned int)cmd_getc ());
-        break;
-      case ')':
-        scr_charset_set (1, (unsigned int)cmd_getc ());
-        break;
-      case '*':
-        scr_charset_set (2, (unsigned int)cmd_getc ());
-        break;
-      case '+':
-        scr_charset_set (3, (unsigned int)cmd_getc ());
-        break;
+    case '#':
+      if (cmd_getc () == '8')
+        scr_E ();
+      break;
+    case '(':
+      scr_charset_set (0, (unsigned int)cmd_getc ());
+      break;
+    case ')':
+      scr_charset_set (1, (unsigned int)cmd_getc ());
+      break;
+    case '*':
+      scr_charset_set (2, (unsigned int)cmd_getc ());
+      break;
+    case '+':
+      scr_charset_set (3, (unsigned int)cmd_getc ());
+      break;
 #if !ENABLE_MINIMAL
-      case '6':
-        scr_backindex ();
-        break;
+    case '6':
+      scr_backindex ();
+      break;
 #endif
-      case '7':
-        scr_cursor (SAVE);
-        break;
-      case '8':
-        scr_cursor (RESTORE);
-        break;
+    case '7':
+      scr_cursor (SAVE);
+      break;
+    case '8':
+      scr_cursor (RESTORE);
+      break;
 #if !ENABLE_MINIMAL
-      case '9':
-        scr_forwardindex ();
-        break;
+    case '9':
+      scr_forwardindex ();
+      break;
 #endif
       // DECPAM/DECPNM
-      case '=':
-        priv_modes |= PrivMode_aplKP;
-        break;
-      case '>':
-        priv_modes &= ~PrivMode_aplKP;
-        break;
+    case '=':
+      priv_modes |= PrivMode_aplKP;
+      break;
+    case '>':
+      priv_modes &= ~PrivMode_aplKP;
+      break;
 
-      case C1_40:
-        cmd_getc ();
-        break;
-      case C1_44:
-        scr_index (UP);
-        break;
+    case C1_40:
+      cmd_getc ();
+      break;
+    case C1_44:
+      scr_index (UP);
+      break;
 
-        /* 8.3.87: NEXT LINE */
-      case C1_NEL:		/* ESC E */
-        {
-          wchar_t nlcr[] = { C0_LF, C0_CR };
-          scr_add_lines (nlcr, ecb_array_length (nlcr), 1);
-        }
-        break;
+      /* 8.3.87: NEXT LINE */
+    case C1_NEL:		/* ESC E */
+      {
+        wchar_t nlcr[] = { C0_LF, C0_CR };
+        scr_add_lines (nlcr, ecb_array_length (nlcr), 1);
+      }
+      break;
 
 #if 0 // disabled because embedded newlines can make exploits easier
-        /* kidnapped escape sequence: Should be 8.3.48 */
-      case C1_ESA:		/* ESC G */
-        // used by original rxvt for rob nations own graphics mode
-        if (cmd_getc () == 'Q' && option (Opt_insecure))
-          tt_printf ("\033G0\012");	/* query graphics - no graphics */
-        break;
+      /* kidnapped escape sequence: Should be 8.3.48 */
+    case C1_ESA:		/* ESC G */
+      // used by original rxvt for rob nations own graphics mode
+      if (cmd_getc () == 'Q' && option (Opt_insecure))
+        tt_printf ("\033G0\012");	/* query graphics - no graphics */
+      break;
 #endif
 
-        /* 8.3.63: CHARACTER TABULATION SET */
-      case C1_HTS:		/* ESC H */
-        scr_set_tab (1);
-        break;
+      /* 8.3.63: CHARACTER TABULATION SET */
+    case C1_HTS:		/* ESC H */
+      scr_set_tab (1);
+      break;
 
-        /* 8.3.105: REVERSE LINE FEED */
-      case C1_RI:			/* ESC M */
-        scr_index (DN);
-        break;
+      /* 8.3.105: REVERSE LINE FEED */
+    case C1_RI:			/* ESC M */
+      scr_index (DN);
+      break;
 
-        /* 8.3.142: SINGLE-SHIFT TWO */
+      /* 8.3.142: SINGLE-SHIFT TWO */
       /* case C1_SS2: break; */
 
-        /* 8.3.143: SINGLE-SHIFT THREE */
+      /* 8.3.143: SINGLE-SHIFT THREE */
       /* case C1_SS3: break; */
 
-        /* 8.3.27: DEVICE CONTROL STRING */
-      case C1_DCS:		/* ESC P */
-        process_dcs_seq ();
-        break;
+      /* 8.3.27: DEVICE CONTROL STRING */
+    case C1_DCS:		/* ESC P */
+      process_dcs_seq ();
+      break;
 
-        /* 8.3.110: SINGLE CHARACTER INTRODUCER */
-      case C1_SCI:		/* ESC Z */
-        tt_write (ESCZ_ANSWER, sizeof (ESCZ_ANSWER) - 1);
-        break;			/* steal obsolete ESC [ c */
+      /* 8.3.110: SINGLE CHARACTER INTRODUCER */
+    case C1_SCI:		/* ESC Z */
+      tt_write (ESCZ_ANSWER, sizeof (ESCZ_ANSWER) - 1);
+      break;			/* steal obsolete ESC [ c */
 
-        /* 8.3.16: CONTROL SEQUENCE INTRODUCER (CSI) */
-      case C1_CSI:		/* ESC [ */
-        process_csi_seq ();
-        break;
+      /* 8.3.16: CONTROL SEQUENCE INTRODUCER (CSI) */
+    case C1_CSI:		/* ESC [ */
+      process_csi_seq ();
+      break;
 
-        /* 8.3.90: OPERATING SYSTEM COMMAND (OSC) */
-      case C1_OSC:		/* ESC ] */
-        process_osc_seq ();
-        break;
+      /* 8.3.90: OPERATING SYSTEM COMMAND (OSC) */
+    case C1_OSC:		/* ESC ] */
+      process_osc_seq ();
+      break;
 
-        /* 8.3.106: RESET TO INITIAL STATE (RIS) */
-      case 'c':
-        mbstate.reset ();
-        scr_poweron ();
-        scrollBar.show (1);
-        break;
+      /* 8.3.106: RESET TO INITIAL STATE (RIS) */
+    case 'c':
+      mbstate.reset ();
+      scr_poweron ();
+      scrollBar.show (1);
+      break;
 
-        /* 8.3.79: LOCKING-SHIFT TWO (see ISO2022) */
-      case 'n':
-        scr_charset_choose (2);
-        break;
+      /* 8.3.79: LOCKING-SHIFT TWO (see ISO2022) */
+    case 'n':
+      scr_charset_choose (2);
+      break;
 
-        /* 8.3.81: LOCKING-SHIFT THREE (see ISO2022) */
-      case 'o':
-        scr_charset_choose (3);
-        break;
+      /* 8.3.81: LOCKING-SHIFT THREE (see ISO2022) */
+    case 'o':
+      scr_charset_choose (3);
+      break;
     }
 }
 /*}}} */
@@ -2760,7 +2770,7 @@ rxvt_term::process_escape_seq ()
 /*{{{ process CONTROL SEQUENCE INTRODUCER (CSI) sequences `ESC[' */
 enum {
   CSI_ICH = 0x40,
-           CSI_CUU, CSI_CUD, CSI_CUF, CSI_CUB, CSI_CNL, CSI_CPL, CSI_CHA,
+  CSI_CUU, CSI_CUD, CSI_CUF, CSI_CUB, CSI_CNL, CSI_CPL, CSI_CHA,
   CSI_CUP, CSI_CHT, CSI_ED , CSI_EL , CSI_IL , CSI_DL , CSI_EF , CSI_EA ,
   CSI_DCH, CSI_SEE, CSI_CPR, CSI_SU , CSI_SD , CSI_NP , CSI_PP , CSI_CTC,
   CSI_ECH, CSI_CVT, CSI_CBT, CSI_SRS, CSI_PTX, CSI_SDS, CSI_SIMD, CSI_5F,
@@ -2771,14 +2781,14 @@ enum {
 };
 
 #define make_byte(b0,b1,b2,b3,b4,b5,b6,b7)			\
-    (((b7) << 7) | ((b6) << 6) | ((b5) << 5) | ((b4) << 4)	\
-     | ((b3) << 3) | ((b2) << 2) | ((b1) << 1) | (b0))
-#define get_byte_array_bit(array, bit)				\
-    (!! ((array)[(bit) >> 3] & (1 << ((bit) & 7))))
+  (((b7) << 7) | ((b6) << 6) | ((b5) << 5) | ((b4) << 4)	\
+   | ((b3) << 3) | ((b2) << 2) | ((b1) << 1) | (b0))
+#define get_byte_array_bit(array, bit)                  \
+  (!! ((array)[(bit) >> 3] & (1 << ((bit) & 7))))
 
 static const unsigned char csi_defaults[] =
-  {
-    make_byte (1,1,1,1,1,1,1,1),	/* @, A, B, C, D, E, F, G, */
+{
+  make_byte (1,1,1,1,1,1,1,1),	/* @, A, B, C, D, E, F, G, */
     make_byte (1,1,0,0,1,1,0,0),	/* H, I, J, K, L, M, N, O, */
     make_byte (1,0,1,1,1,1,1,0),	/* P, Q, R, S, T, U, V, W, */
     make_byte (1,1,1,0,0,0,1,0),	/* X, Y, Z, [, \, ], ^, _, */
@@ -2786,7 +2796,7 @@ static const unsigned char csi_defaults[] =
     make_byte (0,0,1,1,0,0,0,0),	/* h, i, j, k, l, m, n, o, */
     make_byte (0,0,0,0,0,0,0,0),	/* p, q, r, s, t, u, v, w, */
     make_byte (0,0,0,0,0,0,0,0),	/* x, y, z, {, |, }, ~,    */
-  };
+    };
 
 void ecb_hot
 rxvt_term::process_csi_seq ()
@@ -2850,37 +2860,37 @@ rxvt_term::process_csi_seq ()
     {
       switch (priv)
         {
-          case '>':
-            if (ch == CSI_DA)	/* secondary device attributes */
-              {
-                // first parameter is normally 0 for vt100, 1 for vt220, 'R' for rxvt,
-                // 'U' for rxvt-unicode != 7.[34] (where it was broken).
-                //
-                // second parameter is xterm patch level for xterm, MMmmpp (e.g. 20703) for rxvt
-                // and Mm (e.g. 72 for 7.2) for urxvt <= 7.2, 94 for urxvt <= 8.3, and 95 for later
-                // versions.
-                //
-                tt_printf ("\033[>%d;95;0c", 'U');
-              }
-            break;
+        case '>':
+          if (ch == CSI_DA)	/* secondary device attributes */
+            {
+              // first parameter is normally 0 for vt100, 1 for vt220, 'R' for rxvt,
+              // 'U' for rxvt-unicode != 7.[34] (where it was broken).
+              //
+              // second parameter is xterm patch level for xterm, MMmmpp (e.g. 20703) for rxvt
+              // and Mm (e.g. 72 for 7.2) for urxvt <= 7.2, 94 for urxvt <= 8.3, and 95 for later
+              // versions.
+              //
+              tt_printf ("\033[>%d;95;0c", 'U');
+            }
+          break;
 
-          case '?':
-            if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
-              process_terminal_mode (ch, priv, nargs, arg);
-            break;
+        case '?':
+          if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
+            process_terminal_mode (ch, priv, nargs, arg);
+          break;
 
-          case '!':
-            if (ch == CSI_70)
-              {
-                /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
-                scr_soft_reset ();
+        case '!':
+          if (ch == CSI_70)
+            {
+              /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
+              scr_soft_reset ();
 
-                static const int pm_h[] = { 7, 25 };
-                static const int pm_l[] = { 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1005, 1015, 1049 };
+              static const int pm_h[] = { 7, 25 };
+              static const int pm_l[] = { 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1005, 1015, 1049 };
 
-                process_terminal_mode ('h', 0, ecb_array_length (pm_h), pm_h);
-                process_terminal_mode ('l', 0, ecb_array_length (pm_l), pm_l);
-              }
+              process_terminal_mode ('h', 0, ecb_array_length (pm_h), pm_h);
+              process_terminal_mode ('l', 0, ecb_array_length (pm_l), pm_l);
+            }
           break;
         }
 
@@ -2889,225 +2899,225 @@ rxvt_term::process_csi_seq ()
 
   switch (ch)
     {
-        /*
-         * ISO/IEC 6429:1992 (E) CSI sequences (defaults in parentheses)
-         */
+      /*
+       * ISO/IEC 6429:1992 (E) CSI sequences (defaults in parentheses)
+       */
 #ifdef PRINTPIPE
-      case CSI_MC:		/* 8.3.83: (0) MEDIA COPY */
-        switch (arg[0])
-          {
-            case 0:			/* initiate transfer to primary aux device */
-              scr_printscreen (0);
-              break;
-            case 5:			/* start relay to primary aux device */
-              process_print_pipe ();
-              break;
-          }
-        break;
+    case CSI_MC:		/* 8.3.83: (0) MEDIA COPY */
+      switch (arg[0])
+        {
+        case 0:			/* initiate transfer to primary aux device */
+          scr_printscreen (0);
+          break;
+        case 5:			/* start relay to primary aux device */
+          process_print_pipe ();
+          break;
+        }
+      break;
 #endif
 
-      case CSI_CUU:		/* 8.3.22: (1) CURSOR UP */
-      case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
-        arg[0] = -arg[0];
-        /* FALLTHROUGH */
-      case CSI_CUD:		/* 8.3.19: (1) CURSOR DOWN */
-      case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
-        scr_gotorc (arg[0], 0, RELATIVE);
-        break;
+    case CSI_CUU:		/* 8.3.22: (1) CURSOR UP */
+    case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
+      arg[0] = -arg[0];
+      /* FALLTHROUGH */
+    case CSI_CUD:		/* 8.3.19: (1) CURSOR DOWN */
+    case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
+      scr_gotorc (arg[0], 0, RELATIVE);
+      break;
 
-      case CSI_CUB:		/* 8.3.18: (1) CURSOR LEFT */
-      case CSI_HPB:		/* 8.3.59: (1) CHARACTER POSITION BACKWARD */
+    case CSI_CUB:		/* 8.3.18: (1) CURSOR LEFT */
+    case CSI_HPB:		/* 8.3.59: (1) CHARACTER POSITION BACKWARD */
 #ifdef ISO6429
-        arg[0] = -arg[0];
+      arg[0] = -arg[0];
 #else				/* emulate common DEC VTs */
-        arg[0] = arg[0] ? -arg[0] : -1;
+      arg[0] = arg[0] ? -arg[0] : -1;
 #endif
-        /* FALLTHROUGH */
-      case CSI_CUF:		/* 8.3.20: (1) CURSOR RIGHT */
-      case CSI_HPR:		/* 8.3.60: (1) CHARACTER POSITION FORWARD */
+      /* FALLTHROUGH */
+    case CSI_CUF:		/* 8.3.20: (1) CURSOR RIGHT */
+    case CSI_HPR:		/* 8.3.60: (1) CHARACTER POSITION FORWARD */
 #ifdef ISO6429
-        scr_gotorc (0, arg[0], RELATIVE);
+      scr_gotorc (0, arg[0], RELATIVE);
 #else				/* emulate common DEC VTs */
-        scr_gotorc (0, arg[0] ? arg[0] : 1, RELATIVE);
+      scr_gotorc (0, arg[0] ? arg[0] : 1, RELATIVE);
 #endif
-        break;
+      break;
 
-      case CSI_CPL:		/* 8.3.13: (1) CURSOR PRECEDING LINE */
-        arg[0] = -arg[0];
-        /* FALLTHROUGH */
-      case CSI_CNL:		/* 8.3.12: (1) CURSOR NEXT LINE */
-        scr_gotorc (arg[0], 0, R_RELATIVE);
-        break;
+    case CSI_CPL:		/* 8.3.13: (1) CURSOR PRECEDING LINE */
+      arg[0] = -arg[0];
+      /* FALLTHROUGH */
+    case CSI_CNL:		/* 8.3.12: (1) CURSOR NEXT LINE */
+      scr_gotorc (arg[0], 0, R_RELATIVE);
+      break;
 
-      case CSI_CHA:		/* 8.3.9: (1) CURSOR CHARACTER ABSOLUTE */
-      case CSI_HPA:		/* 8.3.58: (1) CURSOR POSITION ABSOLUTE */
-        scr_gotorc (0, arg[0] - 1, R_RELATIVE);
-        break;
+    case CSI_CHA:		/* 8.3.9: (1) CURSOR CHARACTER ABSOLUTE */
+    case CSI_HPA:		/* 8.3.58: (1) CURSOR POSITION ABSOLUTE */
+      scr_gotorc (0, arg[0] - 1, R_RELATIVE);
+      break;
 
-      case CSI_VPA:		/* 8.3.159: (1) LINE POSITION ABSOLUTE */
-        scr_gotorc (arg[0] - 1, 0, C_RELATIVE);
-        break;
+    case CSI_VPA:		/* 8.3.159: (1) LINE POSITION ABSOLUTE */
+      scr_gotorc (arg[0] - 1, 0, C_RELATIVE);
+      break;
 
-      case CSI_CUP:		/* 8.3.21: (1,1) CURSOR POSITION */
-      case CSI_HVP:		/* 8.3.64: (1,1) CHARACTER AND LINE POSITION */
-        scr_gotorc (arg[0] - 1, nargs < 2 ? 0 : (arg[1] - 1), 0);
-        break;
+    case CSI_CUP:		/* 8.3.21: (1,1) CURSOR POSITION */
+    case CSI_HVP:		/* 8.3.64: (1,1) CHARACTER AND LINE POSITION */
+      scr_gotorc (arg[0] - 1, nargs < 2 ? 0 : (arg[1] - 1), 0);
+      break;
 
-      case CSI_CBT:		/* 8.3.7: (1) CURSOR BACKWARD TABULATION */
-        arg[0] = -arg[0];
-        /* FALLTHROUGH */
-      case CSI_CHT:		/* 8.3.10: (1) CURSOR FORWARD TABULATION */
-        scr_tab (arg[0]);
-        break;
+    case CSI_CBT:		/* 8.3.7: (1) CURSOR BACKWARD TABULATION */
+      arg[0] = -arg[0];
+      /* FALLTHROUGH */
+    case CSI_CHT:		/* 8.3.10: (1) CURSOR FORWARD TABULATION */
+      scr_tab (arg[0]);
+      break;
 
-      case CSI_ED:		/* 8.3.40: (0) ERASE IN PAGE */
-        scr_erase_screen (arg[0]);
-        break;
+    case CSI_ED:		/* 8.3.40: (0) ERASE IN PAGE */
+      scr_erase_screen (arg[0]);
+      break;
 
-      case CSI_EL:		/* 8.3.42: (0) ERASE IN LINE */
-        scr_erase_line (arg[0]);
-        break;
+    case CSI_EL:		/* 8.3.42: (0) ERASE IN LINE */
+      scr_erase_line (arg[0]);
+      break;
 
-      case CSI_ICH:		/* 8.3.65: (1) INSERT CHARACTER */
-        scr_insdel_chars (arg[0], INSERT);
-        break;
+    case CSI_ICH:		/* 8.3.65: (1) INSERT CHARACTER */
+      scr_insdel_chars (arg[0], INSERT);
+      break;
 
-      case CSI_IL:		/* 8.3.68: (1) INSERT LINE */
-        scr_insdel_lines (arg[0], INSERT);
-        break;
+    case CSI_IL:		/* 8.3.68: (1) INSERT LINE */
+      scr_insdel_lines (arg[0], INSERT);
+      break;
 
-      case CSI_DL:		/* 8.3.33: (1) DELETE LINE */
-        scr_insdel_lines (arg[0], DELETE);
-        break;
+    case CSI_DL:		/* 8.3.33: (1) DELETE LINE */
+      scr_insdel_lines (arg[0], DELETE);
+      break;
 
-      case CSI_ECH:		/* 8.3.39: (1) ERASE CHARACTER */
-        scr_insdel_chars (arg[0], ERASE);
-        break;
+    case CSI_ECH:		/* 8.3.39: (1) ERASE CHARACTER */
+      scr_insdel_chars (arg[0], ERASE);
+      break;
 
-      case CSI_DCH:		/* 8.3.26: (1) DELETE CHARACTER */
-        scr_insdel_chars (arg[0], DELETE);
-        break;
+    case CSI_DCH:		/* 8.3.26: (1) DELETE CHARACTER */
+      scr_insdel_chars (arg[0], DELETE);
+      break;
 
-      case CSI_SD:		/* 8.3.114: (1) SCROLL DOWN */
-        arg[0] = -arg[0];
-        /* FALLTHROUGH */
-      case CSI_SU:		/* 8.3.148: (1) SCROLL UP */
-        scr_scroll_text (screen.tscroll, screen.bscroll, arg[0]);
-        break;
+    case CSI_SD:		/* 8.3.114: (1) SCROLL DOWN */
+      arg[0] = -arg[0];
+      /* FALLTHROUGH */
+    case CSI_SU:		/* 8.3.148: (1) SCROLL UP */
+      scr_scroll_text (screen.tscroll, screen.bscroll, arg[0]);
+      break;
 
-      case CSI_DA:		/* 8.3.24: (0) DEVICE ATTRIBUTES */
-        tt_write (VT100_ANS, sizeof (VT100_ANS) - 1);
-        break;
+    case CSI_DA:		/* 8.3.24: (0) DEVICE ATTRIBUTES */
+      tt_write (VT100_ANS, sizeof (VT100_ANS) - 1);
+      break;
 
-      case CSI_SGR:		/* 8.3.118: (0) SELECT GRAPHIC RENDITION */
-        process_sgr_mode (nargs, arg);
-        break;
+    case CSI_SGR:		/* 8.3.118: (0) SELECT GRAPHIC RENDITION */
+      process_sgr_mode (nargs, arg);
+      break;
 
-      case CSI_DSR:		/* 8.3.36: (0) DEVICE STATUS REPORT */
-        switch (arg[0])
-          {
-            case 5:			/* DSR requested */
-              tt_printf ("\033[0n");
-              break;
-            case 6:			/* CPR requested */
-              scr_report_position ();
-              break;
-            case 7:			/* unofficial extension */
-              if (option (Opt_insecure))
-                tt_printf ("%-.250s\012", rs[Rs_display_name]);
-              break;
-            case 8:			/* unofficial extension */
-              process_xterm_seq (XTerm_title, RESNAME "-" VERSION, CHAR_ST);
-              break;
-          }
-        break;
+    case CSI_DSR:		/* 8.3.36: (0) DEVICE STATUS REPORT */
+      switch (arg[0])
+        {
+        case 5:			/* DSR requested */
+          tt_printf ("\033[0n");
+          break;
+        case 6:			/* CPR requested */
+          scr_report_position ();
+          break;
+        case 7:			/* unofficial extension */
+          if (option (Opt_insecure))
+            tt_printf ("%-.250s\012", rs[Rs_display_name]);
+          break;
+        case 8:			/* unofficial extension */
+          process_xterm_seq (XTerm_title, RESNAME "-" VERSION, CHAR_ST);
+          break;
+        }
+      break;
 
-      case CSI_TBC:		/* 8.3.155: (0) TABULATION CLEAR */
-        switch (arg[0])
-          {
-            case 0:			/* char tab stop cleared at active position */
-              scr_set_tab (0);
-              break;
-              /* case 1: */		/* line tab stop cleared in active line */
-              /* case 2: */		/* char tab stops cleared in active line */
-            case 3:			/* all char tab stops are cleared */
-              /* case 4: */		/* all line tab stops are cleared */
-            case 5:			/* all tab stops are cleared */
-              scr_set_tab (-1);
-              break;
-          }
-        break;
+    case CSI_TBC:		/* 8.3.155: (0) TABULATION CLEAR */
+      switch (arg[0])
+        {
+        case 0:			/* char tab stop cleared at active position */
+          scr_set_tab (0);
+          break;
+          /* case 1: */		/* line tab stop cleared in active line */
+          /* case 2: */		/* char tab stops cleared in active line */
+        case 3:			/* all char tab stops are cleared */
+          /* case 4: */		/* all line tab stops are cleared */
+        case 5:			/* all tab stops are cleared */
+          scr_set_tab (-1);
+          break;
+        }
+      break;
 
-      case CSI_CTC:		/* 8.3.17: (0) CURSOR TABULATION CONTROL */
-        switch (arg[0])
-          {
-            case 0:			/* char tab stop set at active position */
-              scr_set_tab (1);
-              break;		/* = ESC H */
-              /* case 1: */		/* line tab stop set at active line */
-            case 2:			/* char tab stop cleared at active position */
-              scr_set_tab (0);
-              break;		/* = ESC [ 0 g */
-              /* case 3: */		/* line tab stop cleared at active line */
-              /* case 4: */		/* char tab stops cleared at active line */
-            case 5:			/* all char tab stops are cleared */
-              scr_set_tab (-1);
-              break;		/* = ESC [ 3 g */
-              /* case 6: */		/* all line tab stops are cleared */
-          }
-        break;
+    case CSI_CTC:		/* 8.3.17: (0) CURSOR TABULATION CONTROL */
+      switch (arg[0])
+        {
+        case 0:			/* char tab stop set at active position */
+          scr_set_tab (1);
+          break;		/* = ESC H */
+          /* case 1: */		/* line tab stop set at active line */
+        case 2:			/* char tab stop cleared at active position */
+          scr_set_tab (0);
+          break;		/* = ESC [ 0 g */
+          /* case 3: */		/* line tab stop cleared at active line */
+          /* case 4: */		/* char tab stops cleared at active line */
+        case 5:			/* all char tab stops are cleared */
+          scr_set_tab (-1);
+          break;		/* = ESC [ 3 g */
+          /* case 6: */		/* all line tab stops are cleared */
+        }
+      break;
 
-      case CSI_RM:		/* 8.3.107: RESET MODE */
-        if (arg[0] == 4)
-          scr_insert_mode (0);
-        else if (arg[0] == 20)
-          priv_modes &= ~PrivMode_LFNL;
-        break;
+    case CSI_RM:		/* 8.3.107: RESET MODE */
+      if (arg[0] == 4)
+        scr_insert_mode (0);
+      else if (arg[0] == 20)
+        priv_modes &= ~PrivMode_LFNL;
+      break;
 
-      case CSI_SM:		/* 8.3.126: SET MODE */
-        if (arg[0] == 4)
-          scr_insert_mode (1);
-        else if (arg[0] == 20)
-          priv_modes |= PrivMode_LFNL;
-        break;
+    case CSI_SM:		/* 8.3.126: SET MODE */
+      if (arg[0] == 4)
+        scr_insert_mode (1);
+      else if (arg[0] == 20)
+        priv_modes |= PrivMode_LFNL;
+      break;
 
-      case CSI_71:		// DECSCUSR: set cursor style
-        if (prev_ch == ' ')
-          set_cursor_style (arg[0]);
-        break;
+    case CSI_71:		// DECSCUSR: set cursor style
+      if (prev_ch == ' ')
+        set_cursor_style (arg[0]);
+      break;
 
-        /*
-         * PRIVATE USE beyond this point.  All CSI_7? sequences here
-         */
-      case CSI_72:		/* DECSTBM: set top and bottom margins */
-        if (nargs == 1)
-          scr_scroll_region (arg[0] - 1, MAX_ROWS - 1);
-        else if (nargs == 0 || arg[0] >= arg[1])
-          scr_scroll_region (0, MAX_ROWS - 1);
-        else
-          scr_scroll_region (arg[0] - 1, arg[1] - 1);
-        break;
+      /*
+       * PRIVATE USE beyond this point.  All CSI_7? sequences here
+       */
+    case CSI_72:		/* DECSTBM: set top and bottom margins */
+      if (nargs == 1)
+        scr_scroll_region (arg[0] - 1, MAX_ROWS - 1);
+      else if (nargs == 0 || arg[0] >= arg[1])
+        scr_scroll_region (0, MAX_ROWS - 1);
+      else
+        scr_scroll_region (arg[0] - 1, arg[1] - 1);
+      break;
 
-      case CSI_73:
-        scr_cursor (SAVE);
-        break;
-      case CSI_75:
-        scr_cursor (RESTORE);
-        break;
+    case CSI_73:
+      scr_cursor (SAVE);
+      break;
+    case CSI_75:
+      scr_cursor (RESTORE);
+      break;
 
 #if !ENABLE_MINIMAL
-      case CSI_74:
-        process_window_ops (arg, nargs);
-        break;
+    case CSI_74:
+      process_window_ops (arg, nargs);
+      break;
 #endif
 
-      case CSI_78:		/* DECREQTPARM */
-        if (arg[0] == 0 || arg[0] == 1)
-          tt_printf ("\033[%d;1;1;128;128;1;0x", arg[0] + 2);
-        break;
+    case CSI_78:		/* DECREQTPARM */
+      if (arg[0] == 0 || arg[0] == 1)
+        tt_printf ("\033[%d;1;1;128;128;1;0x", arg[0] + 2);
+      break;
 
-      default:
-        break;
+    default:
+      break;
     }
 }
 /*}}} */
@@ -3130,79 +3140,79 @@ rxvt_term::process_window_ops (const int *args, unsigned int nargs)
       /*
        * commands
        */
-      case 1:			/* deiconify window */
-        XMapWindow (dpy, parent);
-        break;
-      case 2:			/* iconify window */
-        XIconifyWindow (dpy, parent, display->screen);
-        break;
-      case 3:			/* set position (pixels) */
-        XMoveWindow (dpy, parent, args[1], args[2]);
-        break;
-      case 4:			/* set size (pixels) */
-        set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);
-        break;
-      case 5:			/* raise window */
-        XRaiseWindow (dpy, parent);
-        break;
-      case 6:			/* lower window */
-        XLowerWindow (dpy, parent);
-        break;
-      case 7:			/* refresh window */
-        scr_touch (true);
-        break;
-      case 8:			/* set size (chars) */
-        set_widthheight ((unsigned int) (args[2] * fwidth),
-                         (unsigned int) (args[1] * fheight));
-        break;
+    case 1:			/* deiconify window */
+      XMapWindow (dpy, parent);
+      break;
+    case 2:			/* iconify window */
+      XIconifyWindow (dpy, parent, display->screen);
+      break;
+    case 3:			/* set position (pixels) */
+      XMoveWindow (dpy, parent, args[1], args[2]);
+      break;
+    case 4:			/* set size (pixels) */
+      set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);
+      break;
+    case 5:			/* raise window */
+      XRaiseWindow (dpy, parent);
+      break;
+    case 6:			/* lower window */
+      XLowerWindow (dpy, parent);
+      break;
+    case 7:			/* refresh window */
+      scr_touch (true);
+      break;
+    case 8:			/* set size (chars) */
+      set_widthheight ((unsigned int) (args[2] * fwidth),
+                       (unsigned int) (args[1] * fheight));
+      break;
 
       //case 9: NYI, TODO, restore maximized window or maximize window
-      default:
-        if (args[0] >= 24)	/* set height (chars) */
-          set_widthheight ((unsigned int)vt_width,
-                           (unsigned int) (args[1] * fheight));
-        break;
+    default:
+      if (args[0] >= 24)	/* set height (chars) */
+        set_widthheight ((unsigned int)vt_width,
+                         (unsigned int) (args[1] * fheight));
+      break;
 
       /*
        * reports - some output format copied from XTerm
        */
-      case 11:			/* report window state */
-        XGetWindowAttributes (dpy, parent, &wattr);
-        tt_printf ("\033[%dt", wattr.map_state == IsViewable ? 1 : 2);
-        break;
-      case 13:			/* report window position */
-        XGetWindowAttributes (dpy, parent, &wattr);
-        XTranslateCoordinates (dpy, parent, wattr.root,
-                               -wattr.border_width, -wattr.border_width,
-                               &x, &y, &wdummy);
-        tt_printf ("\033[3;%d;%dt", x, y);
-        break;
-      case 14:			/* report window size (pixels) */
-        XGetWindowAttributes (dpy, parent, &wattr);
-        tt_printf ("\033[4;%d;%dt", wattr.height, wattr.width);
-        break;
-      case 18:			/* report text area size (chars) */
-        tt_printf ("\033[8;%d;%dt", nrow, ncol);
-        break;
-      case 19:			/* report window size (chars) */
-        tt_printf ("\033[9;%d;%dt", nrow, ncol);
-        break;
-      case 20:			/* report icon label */
-        {
-          char *s;
-          XGetIconName (dpy, parent, &s);
-          tt_printf ("\033]L%-.250s\234", option (Opt_insecure) && s ? s : "");	/* 8bit ST */
-          XFree (s);
-        }
-        break;
-      case 21:			/* report window title */
-        {
-          char *s;
-          XFetchName (dpy, parent, &s);
-          tt_printf ("\033]l%-.250s\234", option (Opt_insecure) && s ? s : "");	/* 8bit ST */
-          XFree (s);
-        }
-        break;
+    case 11:			/* report window state */
+      XGetWindowAttributes (dpy, parent, &wattr);
+      tt_printf ("\033[%dt", wattr.map_state == IsViewable ? 1 : 2);
+      break;
+    case 13:			/* report window position */
+      XGetWindowAttributes (dpy, parent, &wattr);
+      XTranslateCoordinates (dpy, parent, wattr.root,
+                             -wattr.border_width, -wattr.border_width,
+                             &x, &y, &wdummy);
+      tt_printf ("\033[3;%d;%dt", x, y);
+      break;
+    case 14:			/* report window size (pixels) */
+      XGetWindowAttributes (dpy, parent, &wattr);
+      tt_printf ("\033[4;%d;%dt", wattr.height, wattr.width);
+      break;
+    case 18:			/* report text area size (chars) */
+      tt_printf ("\033[8;%d;%dt", nrow, ncol);
+      break;
+    case 19:			/* report window size (chars) */
+      tt_printf ("\033[9;%d;%dt", nrow, ncol);
+      break;
+    case 20:			/* report icon label */
+      {
+        char *s;
+        XGetIconName (dpy, parent, &s);
+        tt_printf ("\033]L%-.250s\234", option (Opt_insecure) && s ? s : "");	/* 8bit ST */
+        XFree (s);
+      }
+      break;
+    case 21:			/* report window title */
+      {
+        char *s;
+        XFetchName (dpy, parent, &s);
+        tt_printf ("\033]l%-.250s\234", option (Opt_insecure) && s ? s : "");	/* 8bit ST */
+        XFree (s);
+      }
+      break;
     }
 }
 #endif
@@ -3312,8 +3322,8 @@ colorcube_index (unsigned int idx_r,
   assert (idx_b < Blue_levels);
 
   return idx_r * Blue_levels * Green_levels +
-         idx_g * Blue_levels +
-         idx_b;
+    idx_g * Blue_levels +
+    idx_b;
 }
 
 /*
@@ -3338,11 +3348,11 @@ rxvt_term::map_rgb24_color (unsigned int r, unsigned int g, unsigned int b, unsi
   /* we allow one of the 6 directly neighbouring colours */
   /* to replace the current color, if they not used recently */
   static const signed char dxyz[][3] = {
-     0,  0,  0,
-     0,  0, +1,
-     0,  0, -1,
-     0, +1,  0,
-     0, -1,  0,
+    0,  0,  0,
+    0,  0, +1,
+    0,  0, -1,
+    0, +1,  0,
+    0, -1,  0,
     +1,  0,  0,
     -1,  0,  0,
   };
@@ -3378,7 +3388,7 @@ rxvt_term::map_rgb24_color (unsigned int r, unsigned int g, unsigned int b, unsi
         idx = index;
     }
 
-update:
+ update:
   rgb24_color[idx] = color;
   rgb24_seqno[idx] = ++rgb24_sequence;
 
@@ -3429,191 +3439,191 @@ rxvt_term::process_xterm_seq (int op, char *str, char resp)
 
   switch (op)
     {
-      case XTerm_name:
-        set_title (str);
-        /* FALLTHROUGH */
-      case XTerm_iconName:
-        set_icon_name (str);
-        break;
-      case XTerm_title:
-        set_title (str);
-        break;
-      case XTerm_property:
-        if (str[0] == '?')
-          {
-            Atom prop = display->atom (str + 1);
-            Atom actual_type;
-            int actual_format;
-            unsigned long nitems;
-            unsigned long bytes_after;
-            unsigned char *value = 0;
-            const char *str = "";
+    case XTerm_name:
+      set_title (str);
+      /* FALLTHROUGH */
+    case XTerm_iconName:
+      set_icon_name (str);
+      break;
+    case XTerm_title:
+      set_title (str);
+      break;
+    case XTerm_property:
+      if (str[0] == '?')
+        {
+          Atom prop = display->atom (str + 1);
+          Atom actual_type;
+          int actual_format;
+          unsigned long nitems;
+          unsigned long bytes_after;
+          unsigned char *value = 0;
+          const char *str = "";
 
-            if (prop
-                && XGetWindowProperty (dpy, parent,
-                                       prop, 0, 1<<16, 0, AnyPropertyType,
-                                       &actual_type, &actual_format,
-                                       &nitems, &bytes_after, &value) == Success
-                && actual_type != None
-                && actual_format == 8)
-              str = (const char *)(value);
+          if (prop
+              && XGetWindowProperty (dpy, parent,
+                                     prop, 0, 1<<16, 0, AnyPropertyType,
+                                     &actual_type, &actual_format,
+                                     &nitems, &bytes_after, &value) == Success
+              && actual_type != None
+              && actual_format == 8)
+            str = (const char *)(value);
 
-            tt_printf ("\033]%d;%s%c", op, option (Opt_insecure) ? str : "", resp);
+          tt_printf ("\033]%d;%s%c", op, option (Opt_insecure) ? str : "", resp);
 
-            XFree (value);
-          }
-        else
-          {
-            char *eq = strchr (str, '=');
+          XFree (value);
+        }
+      else
+        {
+          char *eq = strchr (str, '=');
 
-            if (eq)
-              {
-                *eq = 0;
-                set_utf8_property (display->atom (str), eq + 1);
-              }
-            else
-              XDeleteProperty (dpy, parent,
-                               display->atom (str));
-          }
-        break;
+          if (eq)
+            {
+              *eq = 0;
+              set_utf8_property (display->atom (str), eq + 1);
+            }
+          else
+            XDeleteProperty (dpy, parent,
+                             display->atom (str));
+        }
+      break;
 
-      case XTerm_Color:
-        for (buf = (char *)str; buf && *buf;)
-          {
-            if ((name = strchr (buf, ';')) == NULL)
-              break;
+    case XTerm_Color:
+      for (buf = (char *)str; buf && *buf;)
+        {
+          if ((name = strchr (buf, ';')) == NULL)
+            break;
 
-            *name++ = '\0';
-            color = atoi (buf) + minCOLOR;
+          *name++ = '\0';
+          color = atoi (buf) + minCOLOR;
 
-            if (!IN_RANGE_INC (color, minCOLOR, maxTermCOLOR))
-              break;
+          if (!IN_RANGE_INC (color, minCOLOR, maxTermCOLOR))
+            break;
 
-            if ((buf = strchr (name, ';')) != NULL)
-              *buf++ = '\0';
+          if ((buf = strchr (name, ';')) != NULL)
+            *buf++ = '\0';
 
-            process_color_seq (op, color, name, resp);
-          }
-        break;
-      case Rxvt_restoreFG:
-      case XTerm_Color00:
-        process_color_seq (op, Color_fg, str, resp);
-        break;
-      case Rxvt_restoreBG:
-      case XTerm_Color01:
-        process_color_seq (op, Color_bg, str, resp);
-        break;
+          process_color_seq (op, color, name, resp);
+        }
+      break;
+    case Rxvt_restoreFG:
+    case XTerm_Color00:
+      process_color_seq (op, Color_fg, str, resp);
+      break;
+    case Rxvt_restoreBG:
+    case XTerm_Color01:
+      process_color_seq (op, Color_bg, str, resp);
+      break;
 #ifndef NO_CURSORCOLOR
-      case XTerm_Color_cursor:
-        process_color_seq (op, Color_cursor, str, resp);
-        break;
+    case XTerm_Color_cursor:
+      process_color_seq (op, Color_cursor, str, resp);
+      break;
 #endif
-      case XTerm_Color_pointer_fg:
-        process_color_seq (op, Color_pointer_fg, str, resp);
-        break;
-      case XTerm_Color_pointer_bg:
-        process_color_seq (op, Color_pointer_bg, str, resp);
-        break;
+    case XTerm_Color_pointer_fg:
+      process_color_seq (op, Color_pointer_fg, str, resp);
+      break;
+    case XTerm_Color_pointer_bg:
+      process_color_seq (op, Color_pointer_bg, str, resp);
+      break;
 #ifdef OPTION_HC
-      case XTerm_Color_HC:
-        process_color_seq (op, Color_HC, str, resp);
-        break;
-      case XTerm_Color_HTC:
-        process_color_seq (op, Color_HTC, str, resp);
-        break;
+    case XTerm_Color_HC:
+      process_color_seq (op, Color_HC, str, resp);
+      break;
+    case XTerm_Color_HTC:
+      process_color_seq (op, Color_HTC, str, resp);
+      break;
 #endif
 #ifndef NO_BOLD_UNDERLINE_REVERSE
-      case URxvt_Color_BD:
-        process_color_seq (op, Color_BD, str, resp);
-        break;
-      case URxvt_Color_UL:
-        process_color_seq (op, Color_UL, str, resp);
-        break;
-      case URxvt_Color_IT:
-        process_color_seq (op, Color_IT, str, resp);
-        break;
+    case URxvt_Color_BD:
+      process_color_seq (op, Color_BD, str, resp);
+      break;
+    case URxvt_Color_UL:
+      process_color_seq (op, Color_UL, str, resp);
+      break;
+    case URxvt_Color_IT:
+      process_color_seq (op, Color_IT, str, resp);
+      break;
 #endif
-      case URxvt_Color_border:
-        process_color_seq (op, Color_border, str, resp);
-        break;
+    case URxvt_Color_border:
+      process_color_seq (op, Color_border, str, resp);
+      break;
 
-      case XTerm_logfile:
-        // TODO, when secure mode?
-        break;
+    case XTerm_logfile:
+      // TODO, when secure mode?
+      break;
 
 #if 0
-      case Rxvt_dumpscreen:	/* no error notices */
-        {
-          int fd;
-          if ((fd = open (str, O_RDWR | O_CREAT | O_EXCL, 0600)) >= 0)
-            {
-              scr_dump (fd);
-              close (fd);
-            }
-        }
-        break;
-#endif
-      case XTerm_font:
-        op = URxvt_font;
-      case URxvt_font:
-#if ENABLE_STYLES
-      case URxvt_boldFont:
-      case URxvt_italicFont:
-      case URxvt_boldItalicFont:
-#endif
-        if (query)
-          tt_printf ("\33]%d;%-.250s%c", saveop,
-                     option (Opt_insecure) && fontset[op - URxvt_font]->fontdesc
-                       ? fontset[op - URxvt_font]->fontdesc : "",
-                     resp);
-        else
+    case Rxvt_dumpscreen:	/* no error notices */
+      {
+        int fd;
+        if ((fd = open (str, O_RDWR | O_CREAT | O_EXCL, 0600)) >= 0)
           {
-            const char *&res = rs[Rs_font + (op - URxvt_font)];
-
-            res = strdup (str);
-            allocated.push_back ((void *)res);
-            set_fonts ();
+            scr_dump (fd);
+            close (fd);
           }
-        break;
+      }
+      break;
+#endif
+    case XTerm_font:
+      op = URxvt_font;
+    case URxvt_font:
+#if ENABLE_STYLES
+    case URxvt_boldFont:
+    case URxvt_italicFont:
+    case URxvt_boldItalicFont:
+#endif
+      if (query)
+        tt_printf ("\33]%d;%-.250s%c", saveop,
+                   option (Opt_insecure) && fontset[op - URxvt_font]->fontdesc
+                   ? fontset[op - URxvt_font]->fontdesc : "",
+                   resp);
+      else
+        {
+          const char *&res = rs[Rs_font + (op - URxvt_font)];
 
-      case URxvt_version:
-        if (query)
-          tt_printf ("\33]%d;rxvt-unicode;%-.20s;%c;%c%c",
-                     op,
-                     rs[Rs_name], VERSION[0], VERSION[2],
-                     resp);
-        break;
+          res = strdup (str);
+          allocated.push_back ((void *)res);
+          set_fonts ();
+        }
+      break;
+
+    case URxvt_version:
+      if (query)
+        tt_printf ("\33]%d;rxvt-unicode;%-.20s;%c;%c%c",
+                   op,
+                   rs[Rs_name], VERSION[0], VERSION[2],
+                   resp);
+      break;
 
 #if !ENABLE_MINIMAL
-      case URxvt_locale:
-        if (query)
-          tt_printf ("\33]%d;%-.250s%c", op, option (Opt_insecure) ? locale : "", resp);
-        else
-          {
-            set_locale (str);
-            pty->set_utf8_mode (enc_utf8);
-            init_xlocale ();
-          }
-        break;
-
-      case URxvt_view_up:
-      case URxvt_view_down:
+    case URxvt_locale:
+      if (query)
+        tt_printf ("\33]%d;%-.250s%c", op, option (Opt_insecure) ? locale : "", resp);
+      else
         {
-          int lines = atoi (str);
-
-          if (lines)
-            scr_page (op == URxvt_view_up ? UP : DN, lines);
-          else
-            scr_erase_savelines ();
+          set_locale (str);
+          pty->set_utf8_mode (enc_utf8);
+          init_xlocale ();
         }
+      break;
 
-        break;
+    case URxvt_view_up:
+    case URxvt_view_down:
+      {
+        int lines = atoi (str);
+
+        if (lines)
+          scr_page (op == URxvt_view_up ? UP : DN, lines);
+        else
+          scr_erase_savelines ();
+      }
+
+      break;
 #endif
 
 #if ENABLE_PERL
-      case URxvt_perl:
-        HOOK_INVOKE ((this, HOOK_OSC_SEQ_PERL, DT_STR, str, DT_STR_LEN, &resp, 1, DT_END));
-        break;
+    case URxvt_perl:
+      HOOK_INVOKE ((this, HOOK_OSC_SEQ_PERL, DT_STR, str, DT_STR_LEN, &resp, 1, DT_END));
+      break;
 #endif
     }
 }
@@ -3670,54 +3680,54 @@ rxvt_term::process_terminal_mode (int mode, int priv ecb_unused, unsigned int na
     const int       argval;
     const unsigned long bit;
   } argtopriv[] = {
-                  { 1, PrivMode_aplCUR },       // DECCKM
-                  { 2, PrivMode_vt52 },         // DECANM
-                  { 3, PrivMode_132 },          // DECCOLM
-                  { 4, PrivMode_smoothScroll }, // DECSCLM
-                  { 5, PrivMode_rVideo },       // DECSCNM
-                  { 6, PrivMode_relOrigin },    // DECOM
-                  { 7, PrivMode_Autowrap },     // DECAWM
-                 // 8, auto-repeat keys         // DECARM
-                  { 9, PrivMode_MouseX10 },
-                  { 12, PrivMode_BlinkingCursor },
-                 // 18 end FF to printer after print screen
-                 // 19 Print screen prints full screen/scroll region
-                  { 25, PrivMode_VisibleCursor }, // DECTCEM cnorm/cvvis/civis
+    { 1, PrivMode_aplCUR },       // DECCKM
+    { 2, PrivMode_vt52 },         // DECANM
+    { 3, PrivMode_132 },          // DECCOLM
+    { 4, PrivMode_smoothScroll }, // DECSCLM
+    { 5, PrivMode_rVideo },       // DECSCNM
+    { 6, PrivMode_relOrigin },    // DECOM
+    { 7, PrivMode_Autowrap },     // DECAWM
+    // 8, auto-repeat keys         // DECARM
+    { 9, PrivMode_MouseX10 },
+    { 12, PrivMode_BlinkingCursor },
+    // 18 end FF to printer after print screen
+    // 19 Print screen prints full screen/scroll region
+    { 25, PrivMode_VisibleCursor }, // DECTCEM cnorm/cvvis/civis
 #ifdef scrollBar_esc
-                  { scrollBar_esc, PrivMode_scrollBar },
+    { scrollBar_esc, PrivMode_scrollBar },
 #endif
-                  { 35, PrivMode_ShiftKeys },   // rxvt extension
-                 // 38, tektronix mode          // DECTEK
-                  { 40, PrivMode_132OK },
-                 // 41 xterm more fixes NYI
-                 // 45 margin bell NYI
-                 // 46 start logging
-                  { 47, PrivMode_Screen },
-                  { 66, PrivMode_aplKP },       // DECNKM
+    { 35, PrivMode_ShiftKeys },   // rxvt extension
+    // 38, tektronix mode          // DECTEK
+    { 40, PrivMode_132OK },
+    // 41 xterm more fixes NYI
+    // 45 margin bell NYI
+    // 46 start logging
+    { 47, PrivMode_Screen },
+    { 66, PrivMode_aplKP },       // DECNKM
 #ifndef NO_BACKSPACE_KEY
-                  { 67, PrivMode_BackSpace },   // DECBKM
+    { 67, PrivMode_BackSpace },   // DECBKM
 #endif
-                  { 1000, PrivMode_MouseX11 },
-                  { 1002, PrivMode_MouseBtnEvent },
-                  { 1003, PrivMode_MouseAnyEvent },
+    { 1000, PrivMode_MouseX11 },
+    { 1002, PrivMode_MouseBtnEvent },
+    { 1003, PrivMode_MouseAnyEvent },
 #if ENABLE_FRILLS
-                  { 1004, PrivMode_FocusEvent },
-                  { 1005, PrivMode_ExtModeMouse },
+    { 1004, PrivMode_FocusEvent },
+    { 1005, PrivMode_ExtModeMouse },
 #endif
-                  { 1010, PrivMode_TtyOutputInh }, // rxvt extension
-                  { 1011, PrivMode_Keypress }, // rxvt extension
+    { 1010, PrivMode_TtyOutputInh }, // rxvt extension
+    { 1011, PrivMode_Keypress }, // rxvt extension
 #if ENABLE_FRILLS
-                  { 1015, PrivMode_ExtMouseRight }, // urxvt extension of 1005
+    { 1015, PrivMode_ExtMouseRight }, // urxvt extension of 1005
 #endif
-                 // 1035 enable modifiers for alt, numlock NYI
-                 // 1036 send ESC for meta keys NYI
-                 // 1037 send DEL for keypad delete NYI
-                  { 1047, PrivMode_Screen },
-                 // 1048 save and restore cursor, implemented in code
-                  { 1049, PrivMode_Screen }, /* xterm extension, clear screen on ti rather than te */
-                 // 1051, 1052, 1060, 1061 keyboard emulation NYI
-                  { 2004, PrivMode_BracketPaste },
-                };
+    // 1035 enable modifiers for alt, numlock NYI
+    // 1036 send ESC for meta keys NYI
+    // 1037 send DEL for keypad delete NYI
+    { 1047, PrivMode_Screen },
+    // 1048 save and restore cursor, implemented in code
+    { 1049, PrivMode_Screen }, /* xterm extension, clear screen on ti rather than te */
+    // 1051, 1052, 1060, 1061 keyboard emulation NYI
+    { 2004, PrivMode_BracketPaste },
+  };
 
   if (nargs == 0)
     return;
@@ -3744,122 +3754,122 @@ rxvt_term::process_terminal_mode (int mode, int priv ecb_unused, unsigned int na
       switch (arg[i])
         {
 #if ENABLE_STYLES
-          case 1021:
-            set_option (Opt_intensityStyles, mode);
+        case 1021:
+          set_option (Opt_intensityStyles, mode);
 
-            scr_touch (true);
-            break;
+          scr_touch (true);
+          break;
 #endif
-          case 1048:		/* alternative cursor save */
-            if (option (Opt_secondaryScreen))
-              if (mode == 0)
-                scr_cursor (RESTORE);
-              else if (mode == 1)
-                scr_cursor (SAVE);
-            break;
+        case 1048:		/* alternative cursor save */
+          if (option (Opt_secondaryScreen))
+            if (mode == 0)
+              scr_cursor (RESTORE);
+            else if (mode == 1)
+              scr_cursor (SAVE);
+          break;
         }
 
       if (state >= 0)
         /* extra handling for values with valid 0 or 1 state */
         switch (arg[i])
           {
-              /* case 1:	- application cursor keys */
-            case 2:			/* VT52 mode */
-              /* oddball mode.  should be set regardless of set/reset
-               * parameter.  Return from VT52 mode with an ESC < from
-               * within VT52 mode
-               */
-              priv_modes |= PrivMode_vt52;
-              break;
-            case 3:			/* 80/132 */
-              if (priv_modes & PrivMode_132OK)
-                set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight);
-              break;
-            case 4:			/* smooth scrolling */
-              set_option (Opt_jumpScroll, !state);
-              break;
-            case 5:			/* reverse video */
-              scr_rvideo_mode (state);
-              break;
-            case 6:			/* relative/absolute origins  */
-              scr_relative_origin (state);
-              break;
-            case 7:			/* autowrap */
-              scr_autowrap (state);
-              break;
+            /* case 1:	- application cursor keys */
+          case 2:			/* VT52 mode */
+            /* oddball mode.  should be set regardless of set/reset
+             * parameter.  Return from VT52 mode with an ESC < from
+             * within VT52 mode
+             */
+            priv_modes |= PrivMode_vt52;
+            break;
+          case 3:			/* 80/132 */
+            if (priv_modes & PrivMode_132OK)
+              set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight);
+            break;
+          case 4:			/* smooth scrolling */
+            set_option (Opt_jumpScroll, !state);
+            break;
+          case 5:			/* reverse video */
+            scr_rvideo_mode (state);
+            break;
+          case 6:			/* relative/absolute origins  */
+            scr_relative_origin (state);
+            break;
+          case 7:			/* autowrap */
+            scr_autowrap (state);
+            break;
             /* case 8:	- auto repeat, can't do on a per window basis */
-            case 9:			/* X10 mouse reporting */
-              if (state)		/* orthogonal */
-                priv_modes &= ~(PrivMode_MouseX11|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
-              break;
+          case 9:			/* X10 mouse reporting */
+            if (state)		/* orthogonal */
+              priv_modes &= ~(PrivMode_MouseX11|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
+            break;
 #ifdef scrollBar_esc
-            case scrollBar_esc:
-              scrollBar.map (state);
-              resize_all_windows (0, 0, 0);
-              scr_touch (true);
-              break;
+          case scrollBar_esc:
+            scrollBar.map (state);
+            resize_all_windows (0, 0, 0);
+            scr_touch (true);
+            break;
 #endif
 #ifdef CURSOR_BLINK
-            case 12:
-              cursor_blink_reset ();
-              break;
+          case 12:
+            cursor_blink_reset ();
+            break;
 #endif
-            case 25:		/* visible/invisible cursor */
-              scr_cursor_visible (state);
-              break;
+          case 25:		/* visible/invisible cursor */
+            scr_cursor_visible (state);
+            break;
             /* case 35:	- shift keys */
             /* case 40:	- 80 <--> 132 mode */
-            case 47:		/* secondary screen */
-              scr_change_screen (state);
-              break;
+          case 47:		/* secondary screen */
+            scr_change_screen (state);
+            break;
             /* case 66:	- application key pad */
             /* case 67:	- backspace key */
-            case 1000:		/* X11 mouse reporting */
-              if (state)		/* orthogonal */
-                priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
-              break;
-            case 1002:
-            case 1003:
+          case 1000:		/* X11 mouse reporting */
+            if (state)		/* orthogonal */
+              priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
+            break;
+          case 1002:
+          case 1003:
+            if (state)
+              {
+                priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseX11);
+                priv_modes &= arg[i] == 1003 ? ~PrivMode_MouseBtnEvent : ~PrivMode_MouseAnyEvent;
+                mouse_row = mouse_col = 0;
+                vt_emask_mouse = PointerMotionMask;
+              }
+            else
+              vt_emask_mouse = NoEventMask;
+
+            vt_select_input ();
+            break;
+          case 1010:		/* scroll to bottom on TTY output inhibit */
+            set_option (Opt_scrollTtyOutput, !state);
+            break;
+          case 1011:		/* scroll to bottom on key press */
+            set_option (Opt_scrollTtyKeypress, state);
+            break;
+          case 1047:		/* secondary screen w/ clearing last */
+            if (option (Opt_secondaryScreen))
+              if (!state)
+                scr_erase_screen (2);
+
+            scr_change_screen (state);
+            break;
+          case 1049:		/* secondary screen w/ clearing first */
+            if (option (Opt_secondaryScreen))
               if (state)
-                {
-                  priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseX11);
-                  priv_modes &= arg[i] == 1003 ? ~PrivMode_MouseBtnEvent : ~PrivMode_MouseAnyEvent;
-                  mouse_row = mouse_col = 0;
-                  vt_emask_mouse = PointerMotionMask;
-                }
+                scr_cursor (SAVE);
+
+            scr_change_screen (state);
+
+            if (option (Opt_secondaryScreen))
+              if (state)
+                scr_erase_screen (2);
               else
-                vt_emask_mouse = NoEventMask;
-
-              vt_select_input ();
-              break;
-            case 1010:		/* scroll to bottom on TTY output inhibit */
-              set_option (Opt_scrollTtyOutput, !state);
-              break;
-            case 1011:		/* scroll to bottom on key press */
-              set_option (Opt_scrollTtyKeypress, state);
-              break;
-            case 1047:		/* secondary screen w/ clearing last */
-              if (option (Opt_secondaryScreen))
-                if (!state)
-                  scr_erase_screen (2);
-
-              scr_change_screen (state);
-              break;
-            case 1049:		/* secondary screen w/ clearing first */
-              if (option (Opt_secondaryScreen))
-                if (state)
-                  scr_cursor (SAVE);
-
-              scr_change_screen (state);
-
-              if (option (Opt_secondaryScreen))
-                if (state)
-                  scr_erase_screen (2);
-                else
-                  scr_cursor (RESTORE);
-              break;
-            default:
-              break;
+                scr_cursor (RESTORE);
+            break;
+          default:
+            break;
           }
     }
 }
@@ -3884,30 +3894,30 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
       rendset = -1;
       switch (arg[i])
         {
-          case 0:
-            rendset = 0, rendstyle = ~RS_None;
-            break;
-          case 1:
-            rendset = 1, rendstyle = RS_Bold;
-            break;
+        case 0:
+          rendset = 0, rendstyle = ~RS_None;
+          break;
+        case 1:
+          rendset = 1, rendstyle = RS_Bold;
+          break;
           //case 2: // low intensity
-          case 3:
-            rendset = 1, rendstyle = RS_Italic;
-            break;
-          case 4:
-            rendset = 1, rendstyle = RS_Uline;
-            break;
-          case 5: // slowly blinking
-          case 6: // rapidly blinking
-            rendset = 1, rendstyle = RS_Blink;
-            break;
+        case 3:
+          rendset = 1, rendstyle = RS_Italic;
+          break;
+        case 4:
+          rendset = 1, rendstyle = RS_Uline;
+          break;
+        case 5: // slowly blinking
+        case 6: // rapidly blinking
+          rendset = 1, rendstyle = RS_Blink;
+          break;
           //case 6: // scoansi light background
-          case 7:
-            rendset = 1, rendstyle = RS_RVid;
-            break;
-          case 8:
-            // invisible. NYI
-            break;
+        case 7:
+          rendset = 1, rendstyle = RS_RVid;
+          break;
+        case 8:
+          // invisible. NYI
+          break;
           //case 9: // crossed out
           //case 10: // scoansi acs off, primary font
           //case 11: // scoansi acs on, first alt font
@@ -3915,27 +3925,27 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
           //...
           //case 19: // ninth alt font
           //case 20: // gothic
-          case 21: // disable bold, faint, sometimes doubly underlined (iso 8613)
-            rendset = 0, rendstyle = RS_Bold;
-            break;
-          case 22: // bold off (vt220)
-            rendset = 0, rendstyle = RS_Bold;
-            break;
-          case 23: // disable italic
-            rendset = 0, rendstyle = RS_Italic;
-            break;
-          case 24: // underline off (vt220)
-            rendset = 0, rendstyle = RS_Uline;
-            break;
-          case 25: // blink off (vt220)
-            rendset = 0, rendstyle = RS_Blink;
-            break;
-          case 26: // variable spacing (iso 8613)
-            rendset = 0, rendstyle = RS_Blink;
-            break;
-          case 27: // reverse off (vt220)
-            rendset = 0, rendstyle = RS_RVid;
-            break;
+        case 21: // disable bold, faint, sometimes doubly underlined (iso 8613)
+          rendset = 0, rendstyle = RS_Bold;
+          break;
+        case 22: // bold off (vt220)
+          rendset = 0, rendstyle = RS_Bold;
+          break;
+        case 23: // disable italic
+          rendset = 0, rendstyle = RS_Italic;
+          break;
+        case 24: // underline off (vt220)
+          rendset = 0, rendstyle = RS_Uline;
+          break;
+        case 25: // blink off (vt220)
+          rendset = 0, rendstyle = RS_Blink;
+          break;
+        case 26: // variable spacing (iso 8613)
+          rendset = 0, rendstyle = RS_Blink;
+          break;
+        case 27: // reverse off (vt220)
+          rendset = 0, rendstyle = RS_RVid;
+          break;
           //case 28: // visible. NYI
           //case 29: // not crossed-out
         }
@@ -3948,86 +3958,86 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
 
       switch (arg[i])
         {
-          case 30:
-          case 31:		/* set fg color */
-          case 32:
-          case 33:
-          case 34:
-          case 35:
-          case 36:
-          case 37:
-            scr_color ((unsigned int) (minCOLOR + (arg[i] - 30)), Color_fg);
-            break;
-          case 39:		/* default fg */
-            scr_color (Color_fg, Color_fg);
-            break;
+        case 30:
+        case 31:		/* set fg color */
+        case 32:
+        case 33:
+        case 34:
+        case 35:
+        case 36:
+        case 37:
+          scr_color ((unsigned int) (minCOLOR + (arg[i] - 30)), Color_fg);
+          break;
+        case 39:		/* default fg */
+          scr_color (Color_fg, Color_fg);
+          break;
 
-          case 40:
-          case 41:		/* set bg color */
-          case 42:
-          case 43:
-          case 44:
-          case 45:
-          case 46:
-          case 47:
-            scr_color ((unsigned int) (minCOLOR + (arg[i] - 40)), Color_bg);
-            break;
-          case 49:		/* default bg */
-            scr_color (Color_bg, Color_bg);
-            break;
+        case 40:
+        case 41:		/* set bg color */
+        case 42:
+        case 43:
+        case 44:
+        case 45:
+        case 46:
+        case 47:
+          scr_color ((unsigned int) (minCOLOR + (arg[i] - 40)), Color_bg);
+          break;
+        case 49:		/* default bg */
+          scr_color (Color_bg, Color_bg);
+          break;
 
-          case 38: // set fg color, ISO 8613-6
-          case 48: // set bg color, ISO 8613-6
-            {
-              unsigned int fgbg = arg[i] == 38 ? Color_fg : Color_bg;
-              unsigned int idx;
+        case 38: // set fg color, ISO 8613-6
+        case 48: // set bg color, ISO 8613-6
+          {
+            unsigned int fgbg = arg[i] == 38 ? Color_fg : Color_bg;
+            unsigned int idx;
             
-              if (nargs > i + 2 && arg[i + 1] == 5)
-                {
-                  idx = minCOLOR + arg[i + 2];
-                  i += 2;
+            if (nargs > i + 2 && arg[i + 1] == 5)
+              {
+                idx = minCOLOR + arg[i + 2];
+                i += 2;
 
-                  scr_color (idx, fgbg);
-                }
-              else if (nargs > i + 4 && arg[i + 1] == 2)
-                {
-                  unsigned int r = arg[i + 2];
-                  unsigned int g = arg[i + 3];
-                  unsigned int b = arg[i + 4];
-                  unsigned int a = 0xff;
+                scr_color (idx, fgbg);
+              }
+            else if (nargs > i + 4 && arg[i + 1] == 2)
+              {
+                unsigned int r = arg[i + 2];
+                unsigned int g = arg[i + 3];
+                unsigned int b = arg[i + 4];
+                unsigned int a = 0xff;
 
-                  idx = map_rgb24_color (r, g, b, a);
+                idx = map_rgb24_color (r, g, b, a);
 
-                  i += 4;
+                i += 4;
 
-                  scr_color (idx, fgbg);
-                }
-            }
-            break;
+                scr_color (idx, fgbg);
+              }
+          }
+          break;
 
           //case 50: // not variable spacing
 
 #if !ENABLE_MINIMAL
-          case 90:
-          case 91:		/* set bright fg color */
-          case 92:
-          case 93:
-          case 94:
-          case 95:
-          case 96:
-          case 97:
-            scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg);
-            break;
-          case 100:
-          case 101:		/* set bright bg color */
-          case 102:
-          case 103:
-          case 104:
-          case 105:
-          case 106:
-          case 107:
-            scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);
-            break;
+        case 90:
+        case 91:		/* set bright fg color */
+        case 92:
+        case 93:
+        case 94:
+        case 95:
+        case 96:
+        case 97:
+          scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg);
+          break;
+        case 100:
+        case 101:		/* set bright bg color */
+        case 102:
+        case 103:
+        case 104:
+        case 105:
+        case 106:
+        case 107:
+          scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);
+          break;
 #endif
         }
     }
